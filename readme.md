@@ -1,11 +1,49 @@
-# Quick Start
+# Chinook with Ontimize Angular front-end
+This is a proof of concept - a local MySQL Chinook database is used to store a yaml file and custom endpoints can read and write the yaml.  The model was created using ApiLogicServer (app-create and app-build) feature to generate the complete application from the yaml file. This editor is designed to help developers edit the templates and labels used in the Ontimize application.
 
-**Microservice Automation Complete -- run to verify:** for **VSCode** users:
-1. `Press F5 to Run` (your venv is defaulted)  
+## Ontimize Seed
+The Ontimize application is loaded in ui/app directory. The react-admin is in the ui/admin directory.
 
-&emsp;&emsp;&emsp;&emsp;For **other IDEs,** please follow the [Setup and Run](#1-setup-and-run) procedure, below.
+## Run the demo
 
-> Tip: create the sample app for customization examples: `ApiLogicServer create --project-name=nw_sample --db_url=nw+`
+## 1.1 Establish Your Python Environment 
+*  __1.1 Establish your Python Environment__ 
+    * Docker or VSCode - [nothing to do](#docker-or-vscode---nothing-to-do)
+    * Otherwise, [Establish Your Python Environment](#establish-your-python-environment---other-environments) to activate these runtime systems
+
+### Install ApiLogicServer:
+
+```bash title="Install API Logic Server in a Virtual Environment"
+python3 -m venv venv                        # may require python3 -m venv venv
+venv\Scripts\activate                       # mac/linux: source venv/bin/activate
+pip install ApiLogicServer
+```
+
+```bash title="Install the Ontimize Yaml project and (install and launch VSCode)"
+git clone https://github.com/tylerm007/chinook_with_ontimize.git
+cd /chinook_with_ontimize
+code .
+```
+
+```bash title="start ApiLogicServer"
+-- press F5 to start ApiLogicServer or python3 api_logic_server_run.py
+-- in a terminal window or 
+-- use run menu to Install Ontimize and Launch Ontimize
+# cd chinook_with_ontimize/ui/app
+npm install
+npm start
+```
+### in a browser - run the react-admin app
+```
+http://localhost:5656 (user: admin password: p)
+```
+
+### Start and run the Ontimize application
+```
+
+http://localhost:4299 (user: admin password: p)
+```
+
 
 &nbsp;
 
