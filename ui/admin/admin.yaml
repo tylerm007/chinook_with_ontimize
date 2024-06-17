@@ -1,0 +1,310 @@
+about:
+  date: June 17, 2024 08:44:16
+  recent_changes: works with modified safrs-react-admin
+  version: 0.0.0
+api_root: '{http_type}://{swagger_host}:{port}/{api}'
+authentication: '{system-default}'
+info:
+  number_relationships: 11
+  number_tables: 11
+resources:
+  Album:
+    attributes:
+    - label: ' Album Id*'
+      name: AlbumId
+      search: true
+      sort: true
+    - name: ArtistId
+      required: true
+    - name: Title
+      required: true
+    tab_groups:
+    - direction: tomany
+      fks:
+      - AlbumId
+      name: TrackList
+      resource: Track
+    - direction: toone
+      fks:
+      - ArtistId
+      name: Artist
+      resource: Artist
+    type: Album
+    user_key: AlbumId
+  Artist:
+    attributes:
+    - label: ' Name*'
+      name: Name
+      search: true
+      sort: true
+    - name: ArtistId
+    tab_groups:
+    - direction: tomany
+      fks:
+      - ArtistId
+      name: AlbumList
+      resource: Album
+    type: Artist
+    user_key: Name
+  Customer:
+    attributes:
+    - label: ' First Name*'
+      name: FirstName
+      required: true
+      search: true
+      sort: true
+    - name: SupportRepId
+    - name: LastName
+      required: true
+    - name: Company
+    - name: Address
+    - name: City
+    - name: State
+    - name: Country
+    - name: PostalCode
+    - name: Phone
+    - name: Fax
+    - name: Email
+      required: true
+    - name: CustomerId
+    tab_groups:
+    - direction: tomany
+      fks:
+      - CustomerId
+      name: InvoiceList
+      resource: Invoice
+    - direction: toone
+      fks:
+      - SupportRepId
+      name: Employee
+      resource: Employee
+    type: Customer
+    user_key: FirstName
+  Employee:
+    attributes:
+    - label: ' Last Name*'
+      name: LastName
+      required: true
+      search: true
+      sort: true
+    - name: ReportsTo
+    - name: FirstName
+      required: true
+    - name: Title
+    - name: BirthDate
+    - name: HireDate
+    - name: Address
+    - name: City
+    - name: State
+    - name: Country
+    - name: PostalCode
+    - name: Phone
+    - name: Fax
+    - name: Email
+    - name: EmployeeId
+    tab_groups:
+    - direction: tomany
+      fks:
+      - SupportRepId
+      name: CustomerList
+      resource: Customer
+    - direction: tomany
+      fks:
+      - ReportsTo
+      name: EmployeeList
+      resource: Employee
+    - direction: toone
+      fks:
+      - ReportsTo
+      name: Employee
+      resource: Employee
+    type: Employee
+    user_key: LastName
+  Genre:
+    attributes:
+    - label: ' Name*'
+      name: Name
+      search: true
+      sort: true
+    - name: GenreId
+    tab_groups:
+    - direction: tomany
+      fks:
+      - GenreId
+      name: TrackList
+      resource: Track
+    type: Genre
+    user_key: Name
+  Invoice:
+    attributes:
+    - label: ' Invoice Id*'
+      name: InvoiceId
+      search: true
+      sort: true
+    - name: CustomerId
+      required: true
+    - name: InvoiceDate
+      required: true
+    - name: BillingAddress
+    - name: BillingCity
+    - name: BillingState
+    - name: BillingCountry
+    - name: BillingPostalCode
+    - name: Total
+      required: true
+    tab_groups:
+    - direction: tomany
+      fks:
+      - InvoiceId
+      name: InvoiceLineList
+      resource: InvoiceLine
+    - direction: toone
+      fks:
+      - CustomerId
+      name: Customer
+      resource: Customer
+    type: Invoice
+    user_key: InvoiceId
+  InvoiceLine:
+    attributes:
+    - label: ' Invoice Line Id*'
+      name: InvoiceLineId
+      search: true
+      sort: true
+    - name: InvoiceId
+      required: true
+    - name: TrackId
+      required: true
+    - name: UnitPrice
+      required: true
+    - name: Quantity
+      required: true
+    tab_groups:
+    - direction: toone
+      fks:
+      - InvoiceId
+      name: Invoice
+      resource: Invoice
+    - direction: toone
+      fks:
+      - TrackId
+      name: Track
+      resource: Track
+    type: InvoiceLine
+    user_key: InvoiceLineId
+  MediaType:
+    attributes:
+    - label: ' Name*'
+      name: Name
+      search: true
+      sort: true
+    - name: MediaTypeId
+    tab_groups:
+    - direction: tomany
+      fks:
+      - MediaTypeId
+      name: TrackList
+      resource: Track
+    type: MediaType
+    user_key: Name
+  Playlist:
+    attributes:
+    - label: ' Name*'
+      name: Name
+      search: true
+      sort: true
+    - name: PlaylistId
+    tab_groups:
+    - direction: tomany
+      fks:
+      - PlaylistId
+      name: PlaylistTrackList
+      resource: PlaylistTrack
+    type: Playlist
+    user_key: Name
+  PlaylistTrack:
+    attributes:
+    - label: ' Playlist Id*'
+      name: PlaylistId
+      search: true
+      sort: true
+    - name: PlaylistId
+    - name: TrackId
+    tab_groups:
+    - direction: toone
+      fks:
+      - PlaylistId
+      name: Playlist
+      resource: Playlist
+    - direction: toone
+      fks:
+      - TrackId
+      name: Track
+      resource: Track
+    type: PlaylistTrack
+    user_key: PlaylistId
+  Track:
+    attributes:
+    - label: ' Name*'
+      name: Name
+      required: true
+      search: true
+      sort: true
+    - name: AlbumId
+    - name: GenreId
+    - name: MediaTypeId
+      required: true
+    - name: Composer
+    - name: Milliseconds
+      required: true
+    - name: Bytes
+    - name: UnitPrice
+      required: true
+    - name: TrackId
+    tab_groups:
+    - direction: tomany
+      fks:
+      - TrackId
+      name: InvoiceLineList
+      resource: InvoiceLine
+    - direction: tomany
+      fks:
+      - TrackId
+      name: PlaylistTrackList
+      resource: PlaylistTrack
+    - direction: toone
+      fks:
+      - AlbumId
+      name: Album
+      resource: Album
+    - direction: toone
+      fks:
+      - GenreId
+      name: Genre
+      resource: Genre
+    - direction: toone
+      fks:
+      - MediaTypeId
+      name: MediaType
+      resource: MediaType
+    type: Track
+    user_key: Name
+settings:
+  HomeJS: http://localhost:5656/admin-app/home.js
+  max_list_columns: 8
+  style_guide:
+    currency_symbol: $
+    currency_symbol_position: left
+    date_format: LL
+    decimal_max: '1000000'
+    decimal_min: '0'
+    decimal_separator: .
+    detail_mode: tab
+    edit_on_mode: dblclick
+    max_decimal_digits: '4'
+    min_decimal_digits: '2'
+    new_mode: dialog
+    pick_style: list
+    style: light
+    thousand_separator: ','
+    use_keycloak: 'false'

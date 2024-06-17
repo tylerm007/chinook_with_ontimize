@@ -1,0 +1,518 @@
+about:
+  date: June 17, 2024 08:44:16
+  recent_changes: works with modified safrs-react-admin
+  version: 0.0.0
+api_root: '{http_type}://{swagger_host}:{port}/{api}'
+authentication: '{system-default}'
+entities:
+  Album:
+    columns:
+    - label: ' Album Id*'
+      name: AlbumId
+      search: true
+      sort: true
+      template: integer
+      type: INTEGER
+    - name: ArtistId
+      required: true
+      template: integer
+      type: INTEGER
+    - name: Title
+      required: true
+      template: text
+      type: VARCHAR(160)
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: AlbumId
+    home_template: home_template.html
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - AlbumId
+    tab_groups:
+    - direction: tomany
+      fks:
+      - AlbumId
+      name: TrackList
+      resource: Track
+    - direction: toone
+      fks:
+      - ArtistId
+      name: Artist
+      resource: Artist
+    type: Album
+  Artist:
+    columns:
+    - label: ' Name*'
+      name: Name
+      search: true
+      sort: true
+      template: text
+      type: VARCHAR(120)
+    - name: ArtistId
+      template: integer
+      type: INTEGER
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: Name
+    home_template: home_template.html
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - ArtistId
+    tab_groups:
+    - direction: tomany
+      fks:
+      - ArtistId
+      name: AlbumList
+      resource: Album
+    type: Artist
+  Customer:
+    columns:
+    - label: ' First Name*'
+      name: FirstName
+      required: true
+      search: true
+      sort: true
+      template: text
+      type: VARCHAR(40)
+    - name: SupportRepId
+      template: integer
+      type: INTEGER
+    - name: LastName
+      required: true
+      template: text
+      type: VARCHAR(20)
+    - name: Company
+      template: text
+      type: VARCHAR(80)
+    - name: Address
+      template: text
+      type: VARCHAR(70)
+    - name: City
+      template: text
+      type: VARCHAR(40)
+    - name: State
+      template: text
+      type: VARCHAR(40)
+    - name: Country
+      template: text
+      type: VARCHAR(40)
+    - name: PostalCode
+      template: text
+      type: VARCHAR(10)
+    - name: Phone
+      template: text
+      type: VARCHAR(24)
+    - name: Fax
+      template: text
+      type: VARCHAR(24)
+    - name: Email
+      required: true
+      template: text
+      type: VARCHAR(60)
+    - name: CustomerId
+      template: integer
+      type: INTEGER
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: FirstName
+    home_template: home_template.html
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - CustomerId
+    tab_groups:
+    - direction: tomany
+      fks:
+      - CustomerId
+      name: InvoiceList
+      resource: Invoice
+    - direction: toone
+      fks:
+      - SupportRepId
+      name: Employee
+      resource: Employee
+    type: Customer
+  Employee:
+    columns:
+    - label: ' Last Name*'
+      name: LastName
+      required: true
+      search: true
+      sort: true
+      template: text
+      type: VARCHAR(20)
+    - name: ReportsTo
+      template: integer
+      type: INTEGER
+    - name: FirstName
+      required: true
+      template: text
+      type: VARCHAR(20)
+    - name: Title
+      template: text
+      type: VARCHAR(30)
+    - name: BirthDate
+      template: date
+      type: DATETIME
+    - name: HireDate
+      template: date
+      type: DATETIME
+    - name: Address
+      template: text
+      type: VARCHAR(70)
+    - name: City
+      template: text
+      type: VARCHAR(40)
+    - name: State
+      template: text
+      type: VARCHAR(40)
+    - name: Country
+      template: text
+      type: VARCHAR(40)
+    - name: PostalCode
+      template: text
+      type: VARCHAR(10)
+    - name: Phone
+      template: text
+      type: VARCHAR(24)
+    - name: Fax
+      template: text
+      type: VARCHAR(24)
+    - name: Email
+      template: text
+      type: VARCHAR(60)
+    - name: EmployeeId
+      template: integer
+      type: INTEGER
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: LastName
+    home_template: home_template.html
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - EmployeeId
+    tab_groups:
+    - direction: tomany
+      fks:
+      - SupportRepId
+      name: CustomerList
+      resource: Customer
+    - direction: tomany
+      fks:
+      - ReportsTo
+      name: EmployeeList
+      resource: Employee
+    - direction: toone
+      fks:
+      - ReportsTo
+      name: Employee
+      resource: Employee
+    type: Employee
+  Genre:
+    columns:
+    - label: ' Name*'
+      name: Name
+      search: true
+      sort: true
+      template: text
+      type: VARCHAR(120)
+    - name: GenreId
+      template: integer
+      type: INTEGER
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: Name
+    home_template: home_template.html
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - GenreId
+    tab_groups:
+    - direction: tomany
+      fks:
+      - GenreId
+      name: TrackList
+      resource: Track
+    type: Genre
+  Invoice:
+    columns:
+    - label: ' Invoice Id*'
+      name: InvoiceId
+      search: true
+      sort: true
+      template: integer
+      type: INTEGER
+    - name: CustomerId
+      required: true
+      template: integer
+      type: INTEGER
+    - name: InvoiceDate
+      required: true
+      template: date
+      type: DATETIME
+    - name: BillingAddress
+      template: text
+      type: VARCHAR(70)
+    - name: BillingCity
+      template: text
+      type: VARCHAR(40)
+    - name: BillingState
+      template: text
+      type: VARCHAR(40)
+    - name: BillingCountry
+      template: text
+      type: VARCHAR(40)
+    - name: BillingPostalCode
+      template: text
+      type: VARCHAR(10)
+    - name: Total
+      required: true
+      template: currency
+      type: DECIMAL(10, 2)
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: InvoiceId
+    home_template: home_template.html
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - InvoiceId
+    tab_groups:
+    - direction: tomany
+      fks:
+      - InvoiceId
+      name: InvoiceLineList
+      resource: InvoiceLine
+    - direction: toone
+      fks:
+      - CustomerId
+      name: Customer
+      resource: Customer
+    type: Invoice
+  InvoiceLine:
+    columns:
+    - label: ' Invoice Line Id*'
+      name: InvoiceLineId
+      search: true
+      sort: true
+      template: integer
+      type: INTEGER
+    - name: InvoiceId
+      required: true
+      template: integer
+      type: INTEGER
+    - name: TrackId
+      required: true
+      template: integer
+      type: INTEGER
+    - name: UnitPrice
+      required: true
+      template: currency
+      type: DECIMAL(10, 2)
+    - name: Quantity
+      required: true
+      template: integer
+      type: INTEGER
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: InvoiceLineId
+    home_template: home_template.html
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - InvoiceLineId
+    tab_groups:
+    - direction: toone
+      fks:
+      - InvoiceId
+      name: Invoice
+      resource: Invoice
+    - direction: toone
+      fks:
+      - TrackId
+      name: Track
+      resource: Track
+    type: InvoiceLine
+  MediaType:
+    columns:
+    - label: ' Name*'
+      name: Name
+      search: true
+      sort: true
+      template: text
+      type: VARCHAR(120)
+    - name: MediaTypeId
+      template: integer
+      type: INTEGER
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: Name
+    home_template: home_template.html
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - MediaTypeId
+    tab_groups:
+    - direction: tomany
+      fks:
+      - MediaTypeId
+      name: TrackList
+      resource: Track
+    type: MediaType
+  Playlist:
+    columns:
+    - label: ' Name*'
+      name: Name
+      search: true
+      sort: true
+      template: text
+      type: VARCHAR(120)
+    - name: PlaylistId
+      template: integer
+      type: INTEGER
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: Name
+    home_template: home_template.html
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - PlaylistId
+    tab_groups:
+    - direction: tomany
+      fks:
+      - PlaylistId
+      name: PlaylistTrackList
+      resource: PlaylistTrack
+    type: Playlist
+  PlaylistTrack:
+    columns:
+    - label: ' Playlist Id*'
+      name: PlaylistId
+      search: true
+      sort: true
+      template: integer
+      type: INTEGER
+    - name: PlaylistId
+      template: integer
+      type: INTEGER
+    - name: TrackId
+      template: integer
+      type: INTEGER
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: PlaylistId
+    home_template: home_template.html
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - PlaylistId
+    - TrackId
+    tab_groups:
+    - direction: toone
+      fks:
+      - PlaylistId
+      name: Playlist
+      resource: Playlist
+    - direction: toone
+      fks:
+      - TrackId
+      name: Track
+      resource: Track
+    type: PlaylistTrack
+  Track:
+    columns:
+    - label: ' Name*'
+      name: Name
+      required: true
+      search: true
+      sort: true
+      template: text
+      type: VARCHAR(200)
+    - name: AlbumId
+      template: integer
+      type: INTEGER
+    - name: GenreId
+      template: integer
+      type: INTEGER
+    - name: MediaTypeId
+      required: true
+      template: integer
+      type: INTEGER
+    - name: Composer
+      template: text
+      type: VARCHAR(220)
+    - name: Milliseconds
+      required: true
+      template: integer
+      type: INTEGER
+    - name: Bytes
+      template: integer
+      type: INTEGER
+    - name: UnitPrice
+      required: true
+      template: currency
+      type: DECIMAL(10, 2)
+    - name: TrackId
+      template: integer
+      type: INTEGER
+    detail_template: detail_template.html
+    exclude: 'false'
+    favorite: Name
+    home_template: home_template.html
+    mode: tab
+    new_template: new_template.html
+    primary_key:
+    - TrackId
+    tab_groups:
+    - direction: tomany
+      fks:
+      - TrackId
+      name: InvoiceLineList
+      resource: InvoiceLine
+    - direction: tomany
+      fks:
+      - TrackId
+      name: PlaylistTrackList
+      resource: PlaylistTrack
+    - direction: toone
+      fks:
+      - AlbumId
+      name: Album
+      resource: Album
+    - direction: toone
+      fks:
+      - GenreId
+      name: Genre
+      resource: Genre
+    - direction: toone
+      fks:
+      - MediaTypeId
+      name: MediaType
+      resource: MediaType
+    type: Track
+settings:
+  HomeJS: http://localhost:5656/admin-app/home.js
+  max_list_columns: 8
+  style_guide:
+    currency_symbol: $
+    currency_symbol_position: left
+    date_format: LL
+    decimal_max: '1000000'
+    decimal_min: '0'
+    decimal_separator: .
+    edit_on_mode: dblclick
+    include_translation: false
+    keycloak_client_id: alsclient
+    keycloak_realm: kcals
+    keycloak_url: http://localhost:8080
+    max_decimal_digits: '4'
+    min_decimal_digits: '2'
+    mode: tab
+    pick_style: list
+    style: light
+    thousand_separator: ','
+    use_keycloak: false

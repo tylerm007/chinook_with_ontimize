@@ -1,0 +1,84 @@
+<o-breadcrumb [form]="TrackForm" label-columns="" separator=" "></o-breadcrumb>
+<o-form #TrackForm attr="Track_form_insert" service="Track" entity="Track" 
+keys="TrackId" fxLayout="column" show-header="yes" header-actions="I"
+horizontal-scroll="yes"
+after-insert-mode="new" class="standalone-form-container">
+
+<o-row attr="row1" layout-align="start stretch">
+  <div fxLayout="row wrap" fxLayoutAlign="start start" fxFlex fxLayoutGap="14px">
+    
+        <o-text-input attr="Name" label=" Name*" enabled="yes" required="yes" fxFlex="20%" class="form-field"></o-text-input>
+      
+        <o-list-picker 
+        attr="AlbumId"
+        service="Album" 
+        entity="AlbumType"
+        fxFlex="30" 
+        query-on-init="no" 
+        query-on-bind="yes" 
+        required="no" 
+        enabled="yes" 
+        filter="yes"
+        value-column="AlbumId" 
+        value-column-type="INTEGER"  
+        keys="AlbumId" 
+        columns="AlbumId;AlbumId" 
+        title="AlbumId"
+        visible-columns="AlbumId;AlbumId" 
+        separator=" - " width="680px" class="form-field">
+</o-list-picker>
+      
+        <o-list-picker 
+        attr="GenreId"
+        service="Genre" 
+        entity="GenreType"
+        fxFlex="30" 
+        query-on-init="no" 
+        query-on-bind="yes" 
+        required="no" 
+        enabled="yes" 
+        filter="yes"
+        value-column="GenreId" 
+        value-column-type="INTEGER"  
+        keys="GenreId" 
+        columns="GenreId;Name" 
+        title="GenreId"
+        visible-columns="GenreId;Name" 
+        separator=" - " width="680px" class="form-field">
+</o-list-picker>
+      
+        <o-list-picker 
+        attr="MediaTypeId"
+        service="MediaType" 
+        entity="MediaTypeType"
+        fxFlex="30" 
+        query-on-init="no" 
+        query-on-bind="yes" 
+        required="yes" 
+        enabled="yes" 
+        filter="yes"
+        value-column="MediaTypeId" 
+        value-column-type="INTEGER"  
+        keys="MediaTypeId" 
+        columns="MediaTypeId;Name" 
+        title="MediaTypeId"
+        visible-columns="MediaTypeId;Name" 
+        separator=" - " width="680px" class="form-field">
+</o-list-picker>
+      
+        <o-text-input attr="Composer" label="Composer" enabled="yes" required="no" fxFlex="20%" class="form-field"></o-text-input>
+      
+        <o-integer-input attr="Milliseconds" label="Milliseconds" type="integer" editable="yes" required="yes" ></o-integer-input>
+      
+        <o-integer-input attr="Bytes" label="Bytes" type="integer" editable="yes" required="no" ></o-integer-input>
+      
+        <o-currency-input attr="UnitPrice" title="UnitPrice" type="currency" editable="yes" required="yes" currency-symbol="$" currency-symbol-position="left" thousand-separator="," decimal-separator="."></o-currency-input>
+      
+        <o-integer-input attr="TrackId" label="TrackId" type="integer" editable="yes" required="no" ></o-integer-input>
+      
+</div>
+</o-row>
+
+<div layout-padding></div>
+
+</o-form>

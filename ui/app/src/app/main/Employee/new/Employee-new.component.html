@@ -1,0 +1,62 @@
+<o-breadcrumb [form]="EmployeeForm" label-columns="" separator=" "></o-breadcrumb>
+<o-form #EmployeeForm attr="Employee_form_insert" service="Employee" entity="Employee" 
+keys="EmployeeId" fxLayout="column" show-header="yes" header-actions="I"
+horizontal-scroll="yes"
+after-insert-mode="new" class="standalone-form-container">
+
+<o-row attr="row1" layout-align="start stretch">
+  <div fxLayout="row wrap" fxLayoutAlign="start start" fxFlex fxLayoutGap="14px">
+    
+        <o-text-input attr="LastName" label=" Last Name*" enabled="yes" required="yes" fxFlex="20%" class="form-field"></o-text-input>
+      
+        <o-list-picker 
+        attr="ReportsTo"
+        service="Employee" 
+        entity="EmployeeType"
+        fxFlex="30" 
+        query-on-init="no" 
+        query-on-bind="yes" 
+        required="no" 
+        enabled="yes" 
+        filter="yes"
+        value-column="EmployeeId" 
+        value-column-type="INTEGER"  
+        keys="EmployeeId" 
+        columns="ReportsTo;LastName" 
+        title="ReportsTo"
+        visible-columns="EmployeeId;LastName" 
+        separator=" - " width="680px" class="form-field">
+</o-list-picker>
+      
+        <o-text-input attr="FirstName" label="FirstName" enabled="yes" required="yes" fxFlex="20%" class="form-field"></o-text-input>
+      
+        <o-text-input attr="Title" label="Title" enabled="yes" required="no" fxFlex="20%" class="form-field"></o-text-input>
+      
+        <o-date-input attr="BirthDate" type="timestamp" label="BirthDate" editable="yes" required="no" format="LL" fxFlex="20%" class="form-field"></o-date-input>
+      
+        <o-date-input attr="HireDate" type="timestamp" label="HireDate" editable="yes" required="no" format="LL" fxFlex="20%" class="form-field"></o-date-input>
+      
+        <o-text-input attr="Address" label="Address" enabled="yes" required="no" fxFlex="20%" class="form-field"></o-text-input>
+      
+        <o-text-input attr="City" label="City" enabled="yes" required="no" fxFlex="20%" class="form-field"></o-text-input>
+      
+        <o-text-input attr="State" label="State" enabled="yes" required="no" fxFlex="20%" class="form-field"></o-text-input>
+      
+        <o-text-input attr="Country" label="Country" enabled="yes" required="no" fxFlex="20%" class="form-field"></o-text-input>
+      
+        <o-text-input attr="PostalCode" label="PostalCode" enabled="yes" required="no" fxFlex="20%" class="form-field"></o-text-input>
+      
+        <o-text-input attr="Phone" label="Phone" enabled="yes" required="no" fxFlex="20%" class="form-field"></o-text-input>
+      
+        <o-text-input attr="Fax" label="Fax" enabled="yes" required="no" fxFlex="20%" class="form-field"></o-text-input>
+      
+        <o-text-input attr="Email" label="Email" enabled="yes" required="no" fxFlex="20%" class="form-field"></o-text-input>
+      
+        <o-integer-input attr="EmployeeId" label="EmployeeId" type="integer" editable="yes" required="no" ></o-integer-input>
+      
+</div>
+</o-row>
+
+<div layout-padding></div>
+
+</o-form>

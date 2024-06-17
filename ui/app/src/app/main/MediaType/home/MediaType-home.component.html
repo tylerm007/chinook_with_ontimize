@@ -1,0 +1,33 @@
+<o-form attr="MediaType" mode="tab" title="{{ 'MEDIATYPE' | oTranslate }}" class="fill-form">
+    <div fxFill fxLayout="column" fxLayoutAlign="start">
+        <o-table 
+            attr="MediaTypeTable" 
+            service="MediaType" 
+            entity="MediaType" 
+            title="{{ 'MEDIATYPE' | oTranslate }}"
+            keys="MediaTypeId"
+            columns="Name;MediaTypeId" 
+            header-actions="R;D"
+            visible-columns="Name;MediaTypeId"  
+            sort-columns="Name" 
+            query-rows="20" 
+            quick-filter="yes"
+            row-height="medium" 
+            select-all-checkbox="true" 
+            pageable="yes"  
+            auto-adjust="true" 
+            virtual-scroll="yes" 
+            edition-mode="dblclick"
+            horizontal-scroll="yes"
+            show-title="yes"
+            export-button="yes">
+            
+            <o-table-column attr="Name" label=" Name*" editable="yes" required="no" content-align="left"></o-table-column>
+            
+            <o-table-column attr="MediaTypeId" label="MediaTypeId" type="integer" editable="yes" required="no" content-align="center"></o-table-column>
+            
+            <o-table-context-menu></o-table-context-menu>
+            <o-table-paginator page-size-options="24;48;96"></o-table-paginator>
+        </o-table>
+    </div>
+</o-form>

@@ -1,0 +1,90 @@
+<div class="container">
+<o-form-container breadcrumb="yes" breadcrumb-label-columns="Name" breadcrumb-separator=", " class="fill-form">
+      <o-form #form attr="Playlist_form_edit" 
+        service="Playlist" 
+        entity="Playlist" 
+        fxLayout="column" 
+        show-header="yes" 
+        header-actions="R;I;U;D"
+        #oDetailForm keys="PlaylistId" 
+        keys-sql-types="INTEGER" 
+        show-header-navigation="yes"
+        (onDataLoaded)="onDataLoaded($event)">
+
+  <o-row attr="row1" layout-align="start stretch">
+    <div fxLayout="row wrap" fxLayoutAlign="start start" fxFlex fxLayoutGap="14px">
+      
+      <o-text-input attr="Name" label=" Name*" enabled="yes" required="no" fxFlex="20%" class="form-field"></o-text-input>
+      
+      <o-integer-input attr="PlaylistId" label="PlaylistId" type="integer" editable="yes" required="no" ></o-integer-input>
+      
+    </div>
+  </o-row>
+      
+      <mat-tab-group fxFill>
+        
+        <mat-tab label="PLAYLISTTRACK-PlaylistId">
+    <div layout-padding>
+      <o-table 
+        attr="PlaylistTrackTable" 
+        service="PlaylistTrack" 
+        entity="PlaylistTrack" 
+        keys="PlaylistId;TrackId"
+        parent-keys="PlaylistId:PlaylistId"
+        columns="PlaylistId;PlaylistId;TrackId"  
+        horizontal-scroll="yes"
+        detail-form-route="PlaylistTrack" 
+        edit-form-route="PlaylistTrack"
+        visible-columns="PlaylistId;PlaylistId;TrackId"  
+        sort-columns="PlaylistId" 
+        query-rows="25" 
+        quick-filter="yes"
+        row-height="medium" 
+        select-all-checkbox="true" 
+        pageable="yes"  
+        auto-adjust="true" 
+        virtual-scroll="yes" 
+        insert-button="yes" 
+        delete-button="yes" 
+        fixed-header="true" 
+        class="vertical-padding-8"
+        edition-mode="dblclick" 
+        horizontal-scroll="yes" class="fill-form">
+        
+          <o-table-column attr="PlaylistId" title="Playlist">
+    <o-table-cell-renderer-service attr="PlaylistId" 
+        service="Playlist" entity="PlaylistType" columns="PlaylistId;Name"
+        parent-keys="PlaylistId:PlaylistId"
+        value-column="Name" keys="PlaylistId"
+        visible-columns="Name" separator=" - " width="680px">
+    </o-table-cell-renderer-service>
+</o-table-column>
+        
+          <o-table-column attr="PlaylistId" title="Playlist">
+    <o-table-cell-renderer-service attr="PlaylistId" 
+        service="Playlist" entity="PlaylistType" columns="PlaylistId;Name"
+        parent-keys="PlaylistId:PlaylistId"
+        value-column="Name" keys="PlaylistId"
+        visible-columns="Name" separator=" - " width="680px">
+    </o-table-cell-renderer-service>
+</o-table-column>
+        
+          <o-table-column attr="TrackId" title="Track">
+    <o-table-cell-renderer-service attr="TrackId" 
+        service="Track" entity="TrackType" columns="TrackId;Name"
+        parent-keys="TrackId:PlaylistId"
+        value-column="Name" keys="TrackId"
+        visible-columns="Name" separator=" - " width="680px">
+    </o-table-cell-renderer-service>
+</o-table-column>
+        
+        <o-table-paginator page-size-options="25;50;100"></o-table-paginator>
+      </o-table>
+    </div>
+</mat-tab>
+        
+      </mat-tab-group>
+      
+    </o-form>
+  </o-form-container>
+</div>

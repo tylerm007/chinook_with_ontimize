@@ -1,0 +1,56 @@
+<o-form attr="PlaylistTrack" mode="tab" title="{{ 'PLAYLISTTRACK' | oTranslate }}" class="fill-form">
+    <div fxFill fxLayout="column" fxLayoutAlign="start">
+        <o-table 
+            attr="PlaylistTrackTable" 
+            service="PlaylistTrack" 
+            entity="PlaylistTrack" 
+            title="{{ 'PLAYLISTTRACK' | oTranslate }}"
+            keys="PlaylistId;TrackId"
+            columns="PlaylistId;PlaylistId;TrackId" 
+            header-actions="R;D"
+            visible-columns="PlaylistId;PlaylistId;TrackId"  
+            sort-columns="PlaylistId" 
+            query-rows="20" 
+            quick-filter="yes"
+            row-height="medium" 
+            select-all-checkbox="true" 
+            pageable="yes"  
+            auto-adjust="true" 
+            virtual-scroll="yes" 
+            edition-mode="dblclick"
+            horizontal-scroll="yes"
+            show-title="yes"
+            export-button="yes">
+            
+            <o-table-column attr="PlaylistId" title="Playlist">
+    <o-table-cell-renderer-service attr="PlaylistId" 
+        service="Playlist" entity="PlaylistType" columns="PlaylistId;Name"
+        parent-keys="PlaylistId:PlaylistId"
+        value-column="Name" keys="PlaylistId"
+        visible-columns="Name" separator=" - " width="680px">
+    </o-table-cell-renderer-service>
+</o-table-column>
+            
+            <o-table-column attr="PlaylistId" title="Playlist">
+    <o-table-cell-renderer-service attr="PlaylistId" 
+        service="Playlist" entity="PlaylistType" columns="PlaylistId;Name"
+        parent-keys="PlaylistId:PlaylistId"
+        value-column="Name" keys="PlaylistId"
+        visible-columns="Name" separator=" - " width="680px">
+    </o-table-cell-renderer-service>
+</o-table-column>
+            
+            <o-table-column attr="TrackId" title="Track">
+    <o-table-cell-renderer-service attr="TrackId" 
+        service="Track" entity="TrackType" columns="TrackId;Name"
+        parent-keys="TrackId:PlaylistId"
+        value-column="Name" keys="TrackId"
+        visible-columns="Name" separator=" - " width="680px">
+    </o-table-cell-renderer-service>
+</o-table-column>
+            
+            <o-table-context-menu></o-table-context-menu>
+            <o-table-paginator page-size-options="24;48;96"></o-table-paginator>
+        </o-table>
+    </div>
+</o-form>

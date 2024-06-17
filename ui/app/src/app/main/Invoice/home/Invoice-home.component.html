@@ -1,0 +1,54 @@
+<o-form attr="Invoice" mode="tab" title="{{ 'INVOICE' | oTranslate }}" class="fill-form">
+    <div fxFill fxLayout="column" fxLayoutAlign="start">
+        <o-table 
+            attr="InvoiceTable" 
+            service="Invoice" 
+            entity="Invoice" 
+            title="{{ 'INVOICE' | oTranslate }}"
+            keys="InvoiceId"
+            columns="InvoiceId;CustomerId;InvoiceDate;BillingAddress;BillingCity;BillingState;BillingCountry;BillingPostalCode;Total" 
+            header-actions="R;D"
+            visible-columns="InvoiceId;CustomerId;InvoiceDate;BillingAddress;BillingCity;BillingState;BillingCountry;BillingPostalCode;Total"  
+            sort-columns="InvoiceId" 
+            query-rows="20" 
+            quick-filter="yes"
+            row-height="medium" 
+            select-all-checkbox="true" 
+            pageable="yes"  
+            auto-adjust="true" 
+            virtual-scroll="yes" 
+            edition-mode="dblclick"
+            horizontal-scroll="yes"
+            show-title="yes"
+            export-button="yes">
+            
+            <o-table-column attr="InvoiceId" label=" Invoice Id*" type="integer" editable="yes" required="no" content-align="center"></o-table-column>
+            
+            <o-table-column attr="CustomerId" title="Customer">
+    <o-table-cell-renderer-service attr="CustomerId" 
+        service="Customer" entity="CustomerType" columns="CustomerId;FirstName"
+        parent-keys="CustomerId:InvoiceId"
+        value-column="FirstName" keys="CustomerId"
+        visible-columns="FirstName" separator=" - " width="680px">
+    </o-table-cell-renderer-service>
+</o-table-column>
+            
+            <o-date-input attr="InvoiceDate" type="timestamp" label="InvoiceDate" editable="yes" required="yes" format="LL" fxFlex="20%" class="form-field"></o-date-input>
+            
+            <o-table-column attr="BillingAddress" label="BillingAddress" editable="yes" required="no" content-align="left"></o-table-column>
+            
+            <o-table-column attr="BillingCity" label="BillingCity" editable="yes" required="no" content-align="left"></o-table-column>
+            
+            <o-table-column attr="BillingState" label="BillingState" editable="yes" required="no" content-align="left"></o-table-column>
+            
+            <o-table-column attr="BillingCountry" label="BillingCountry" editable="yes" required="no" content-align="left"></o-table-column>
+            
+            <o-table-column attr="BillingPostalCode" label="BillingPostalCode" editable="yes" required="no" content-align="left"></o-table-column>
+            
+            <o-table-column attr="Total" label="Total" type="currency" editable="yes" required="yes" currency-symbol="$" currency-symbol-position="left" thousand-separator=","decimal-separator="."></o-table-column>
+            
+            <o-table-context-menu></o-table-context-menu>
+            <o-table-paginator page-size-options="24;48;96"></o-table-paginator>
+        </o-table>
+    </div>
+</o-form>

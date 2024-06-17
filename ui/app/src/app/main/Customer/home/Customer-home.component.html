@@ -1,0 +1,62 @@
+<o-form attr="Customer" mode="tab" title="{{ 'CUSTOMER' | oTranslate }}" class="fill-form">
+    <div fxFill fxLayout="column" fxLayoutAlign="start">
+        <o-table 
+            attr="CustomerTable" 
+            service="Customer" 
+            entity="Customer" 
+            title="{{ 'CUSTOMER' | oTranslate }}"
+            keys="CustomerId"
+            columns="FirstName;SupportRepId;LastName;Company;Address;City;State;Country;PostalCode;Phone;Fax;Email;CustomerId" 
+            header-actions="R;D"
+            visible-columns="FirstName;SupportRepId;LastName;Company;Address;City;State;Country;PostalCode;Phone;Fax;Email;CustomerId"  
+            sort-columns="FirstName" 
+            query-rows="20" 
+            quick-filter="yes"
+            row-height="medium" 
+            select-all-checkbox="true" 
+            pageable="yes"  
+            auto-adjust="true" 
+            virtual-scroll="yes" 
+            edition-mode="dblclick"
+            horizontal-scroll="yes"
+            show-title="yes"
+            export-button="yes">
+            
+            <o-table-column attr="FirstName" label=" First Name*" editable="yes" required="yes" content-align="left"></o-table-column>
+            
+            <o-table-column attr="SupportRepId" title="SupportRep">
+    <o-table-cell-renderer-service attr="SupportRepId" 
+        service="Employee" entity="EmployeeType" columns="SupportRepId;LastName"
+        parent-keys="SupportRepId:CustomerId"
+        value-column="LastName" keys="SupportRepId"
+        visible-columns="LastName" separator=" - " width="680px">
+    </o-table-cell-renderer-service>
+</o-table-column>
+            
+            <o-table-column attr="LastName" label="LastName" editable="yes" required="yes" content-align="left"></o-table-column>
+            
+            <o-table-column attr="Company" label="Company" editable="yes" required="no" content-align="left"></o-table-column>
+            
+            <o-table-column attr="Address" label="Address" editable="yes" required="no" content-align="left"></o-table-column>
+            
+            <o-table-column attr="City" label="City" editable="yes" required="no" content-align="left"></o-table-column>
+            
+            <o-table-column attr="State" label="State" editable="yes" required="no" content-align="left"></o-table-column>
+            
+            <o-table-column attr="Country" label="Country" editable="yes" required="no" content-align="left"></o-table-column>
+            
+            <o-table-column attr="PostalCode" label="PostalCode" editable="yes" required="no" content-align="left"></o-table-column>
+            
+            <o-table-column attr="Phone" label="Phone" editable="yes" required="no" content-align="left"></o-table-column>
+            
+            <o-table-column attr="Fax" label="Fax" editable="yes" required="no" content-align="left"></o-table-column>
+            
+            <o-table-column attr="Email" label="Email" editable="yes" required="yes" content-align="left"></o-table-column>
+            
+            <o-table-column attr="CustomerId" label="CustomerId" type="integer" editable="yes" required="no" content-align="center"></o-table-column>
+            
+            <o-table-context-menu></o-table-context-menu>
+            <o-table-paginator page-size-options="24;48;96"></o-table-paginator>
+        </o-table>
+    </div>
+</o-form>

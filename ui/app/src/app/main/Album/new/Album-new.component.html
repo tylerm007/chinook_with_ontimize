@@ -1,0 +1,38 @@
+<o-breadcrumb [form]="AlbumForm" label-columns="" separator=" "></o-breadcrumb>
+<o-form #AlbumForm attr="Album_form_insert" service="Album" entity="Album" 
+keys="AlbumId" fxLayout="column" show-header="yes" header-actions="I"
+horizontal-scroll="yes"
+after-insert-mode="new" class="standalone-form-container">
+
+<o-row attr="row1" layout-align="start stretch">
+  <div fxLayout="row wrap" fxLayoutAlign="start start" fxFlex fxLayoutGap="14px">
+    
+        <o-integer-input attr="AlbumId" label=" Album Id*" type="integer" editable="yes" required="no" ></o-integer-input>
+      
+        <o-list-picker 
+        attr="ArtistId"
+        service="Artist" 
+        entity="ArtistType"
+        fxFlex="30" 
+        query-on-init="no" 
+        query-on-bind="yes" 
+        required="yes" 
+        enabled="yes" 
+        filter="yes"
+        value-column="ArtistId" 
+        value-column-type="INTEGER"  
+        keys="ArtistId" 
+        columns="ArtistId;Name" 
+        title="ArtistId"
+        visible-columns="ArtistId;Name" 
+        separator=" - " width="680px" class="form-field">
+</o-list-picker>
+      
+        <o-text-input attr="Title" label="Title" enabled="yes" required="yes" fxFlex="20%" class="form-field"></o-text-input>
+      
+</div>
+</o-row>
+
+<div layout-padding></div>
+
+</o-form>

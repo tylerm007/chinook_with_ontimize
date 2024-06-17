@@ -1,0 +1,19 @@
+<o-breadcrumb [form]="ArtistForm" label-columns="" separator=" "></o-breadcrumb>
+<o-form #ArtistForm attr="Artist_form_insert" service="Artist" entity="Artist" 
+keys="ArtistId" fxLayout="column" show-header="yes" header-actions="I"
+horizontal-scroll="yes"
+after-insert-mode="new" class="standalone-form-container">
+
+<o-row attr="row1" layout-align="start stretch">
+  <div fxLayout="row wrap" fxLayoutAlign="start start" fxFlex fxLayoutGap="14px">
+    
+        <o-text-input attr="Name" label=" Name*" enabled="yes" required="no" fxFlex="20%" class="form-field"></o-text-input>
+      
+        <o-integer-input attr="ArtistId" label="ArtistId" type="integer" editable="yes" required="no" ></o-integer-input>
+      
+</div>
+</o-row>
+
+<div layout-padding></div>
+
+</o-form>
