@@ -321,7 +321,7 @@ class CustomEndpoint():
         model_class = self._model_class
         model_class_name = self._model_class_name
         queryFilter = self._createFilterFromKeys()
-            session_qry= session.query(model_class)
+        session_qry= session.query(model_class)
         #result = session.execute(select(model_class).where(text("Id = 'ALFKI'"))).all() #.join(models.Customer.OrderList)).order()
         if queryFilter is None or queryFilter == 'None':
             #query = select(self._model_class)
