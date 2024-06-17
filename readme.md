@@ -1,5 +1,6 @@
 # Chinook with Ontimize Angular front-end
-This is a proof of concept - a local MySQL Chinook database is used to store a yaml file and custom endpoints can read and write the yaml.  The model was created using ApiLogicServer (app-create and app-build) feature to generate the complete application from the yaml file. This editor is designed to help developers edit the templates and labels used in the Ontimize application.
+This is a proof of concept - a local MySQL Chinook database is used to demonstrate the Chinook model running an Ontimize Angular application.  The model was created using ApiLogicServer (app-create and app-build) feature to generate the complete application from the ui/app/app_model.yaml file. This file is used to help developers edit the templates and labels used in the generated Ontimize application.
+![](./ui/images/Album.png)
 
 ## Ontimize Seed
 The Ontimize application is loaded in ui/app directory. The react-admin is in the ui/admin directory.
@@ -18,8 +19,14 @@ python3 -m venv venv                        # may require python3 -m venv venv
 venv\Scripts\activate                       # mac/linux: source venv/bin/activate
 pip install ApiLogicServer
 ```
+## Configure MySQL 
+Go to config/config.py and change line 104 SQLALCHEMY_DATABASE_URI to point to your local database.
+```
+SQLALCHEMY_DATABASE_URI : typing.Optional[str] = f"mysql+pymysql://root:password@localhost:3308/Chinook"
+```
 
-```bash title="Install the Ontimize Yaml project and (install and launch VSCode)"
+## Install Project from Git
+```bash title="Install the Ontimize Chinook project and (install and launch VSCode)"
 git clone https://github.com/tylerm007/chinook_with_ontimize.git
 cd /chinook_with_ontimize
 code .
