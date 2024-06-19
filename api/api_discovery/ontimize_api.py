@@ -114,21 +114,38 @@ def add_service(app, api, project_dir, swagger_host: str, PORT: str, method_deco
         print(valuesYaml['resources'])
         return jsonify(valuesYaml)
 
-    
+    #@app.route("/ontimizeweb/services/rest/export/csv", methods=['GET','POST','PUT','PATCH','DELETE','OPTIONS']) 
+    #@cross_origin()
+    #@admin_required()
     def gen_export(request) -> any:
         payload = json.loads(request.data)
-        filter, columns, sqltypes, offset, pagesize, orderBy, data = parsePayload(payload)
-        print(payload)
-        if len(payload) == 3:
+        type = payload.get("type") or "csv"
+        entity = payload.get("dao") 
+        queryParm = payload.get("queryParm") or {}
+        columns = payload.get("columns") or []
+        columnTitles = payload.get("columnTitles") or []
+        if not entity:
             return jsonify({})
-        
-        
-        return {}
+        resource = find_model(entity)
+        api_clz = resource["model"]
+        resources = getMetaData(api_clz.__name__)
+        attributes = resources["resources"][api_clz.__name__]["attributes"]
+        if type in ["csv",'CSV']:
+            from api.gen_csv_report import gen_report as csv_gen_report
+            return csv_gen_report(api_clz, request, entity, queryParm, columns, columnTitles, attributes) 
+        elif type == "pdf": 
+            from api.gen_pdf_report import export_pdf
+            payload["entity"] = entity
+            return export_pdf(api_clz, request, entity, queryParm, columns, columnTitles, attributes) 
+        elif type == "xlsx":
+            from api.gen_xlsx_report import xlsx_gen_report
+            return xlsx_gen_report(api_clz, request, entity, queryParm, columns, columnTitles, attributes)
+        return jsonify({"code":1,"message":f"Unknown export type {type}","data":None,"sqlTypes":None})   
+    
     
     def _gen_report(request) -> any:
         payload = json.loads(request.data)
 
-        print(payload)
         if len(payload) == 3:
             return jsonify({})
         
@@ -142,8 +159,7 @@ def add_service(app, api, project_dir, swagger_host: str, PORT: str, method_deco
         
     
     @app.route("/ontimizeweb/services/rest/<path:path>", methods=['GET','POST','PUT','PATCH','DELETE','OPTIONS'])
-    @app.route("/services/rest/<path:path>", methods=['GET','POST','PUT','PATCH','DELETE','OPTIONS'])
-    @cross_origin(vary_header=True)
+    @cross_origin()
     @admin_required()
     def api_search(path):
         s = path.split("/")

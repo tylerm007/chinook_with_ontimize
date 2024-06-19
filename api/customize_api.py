@@ -27,6 +27,17 @@ def expose_services(app, api, project_dir, swagger_host: str, PORT: str):
     from api.api_discovery.auto_discovery import discover_services
     discover_services(app, api, project_dir, swagger_host, PORT)
 
+    #@app.route("/ontimizeweb/services/rest/export/csv", methods=['GET','POST','PUT','PATCH','DELETE','OPTIONS']) 
+    #@cross_origin(vary_header=True)
+    #@admin_required()
+    def gen_export() -> any:
+        import json
+        payload = json.loads(request.data)
+        filter, columns, sqltypes, offset, pagesize, orderBy, data = parsePayload(payload)
+        print(payload)
+        if len(payload) == 3:
+            return jsonify({})
+        
     @app.route('/hello_world')
     def hello_world():  # test it with: http://localhost::5656/hello_world?user=ApiLogicServer
         """

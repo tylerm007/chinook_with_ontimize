@@ -321,8 +321,11 @@ def api_logic_server_setup(flask_app: Flask, args: Args):
 
 flask_app = Flask("API Logic Server", template_folder='ui/templates')  # templates to load ui/admin/admin.yaml
 
-CORS(flask_app, resources=[{r"/api/*": {"origins": "*"}}],
-     allow_headers=["Content-Type", "Authorization", "Access-Control-Allow-Credentials"],supports_credentials=True)
+# The code you provided is not valid Python code. It seems like you are trying to write a comment
+# using the `#` symbol, but the rest of the code is not a valid Python syntax. If you provide more
+# context or correct the code, I can help you understand what it is trying to do.
+CORS(flask_app, resources=[{r"/api/*": {"origins": "http://localhost:4299"}}],
+    allow_headers=["Content-Type", "Authorization", "Access-Control-Allow-Credentials"],supports_credentials=True)
 
 
 args = Args(flask_app=flask_app)                                # creation defaults
