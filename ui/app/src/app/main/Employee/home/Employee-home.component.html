@@ -26,8 +26,8 @@
             
             <o-table-column attr="ReportsTo" title="ReportsTo">
     <o-table-cell-renderer-service attr="ReportsTo" 
-        service="Employee" entity="EmployeeType" columns="ReportsTo;LastName"
-        parent-keys="ReportsTo:EmployeeId"
+        service="Employee" entity="EmployeeType" columns="EmployeeId;LastName"
+        parent-keys="EmployeeId:ReportsTo"
         value-column="LastName" keys="ReportsTo"
         visible-columns="LastName" separator=" - " width="680px">
     </o-table-cell-renderer-service>

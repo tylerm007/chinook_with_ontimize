@@ -4,7 +4,7 @@ export const SERVICE_CONFIG: Object ={ 'Album': { 'path': '/Album' }
 ,'Employee': { 'path': '/Employee' }
 ,'Genre': { 'path': '/Genre' }
 ,'Invoice': { 'path': '/Invoice' }
-,'InvoiceLine': { 'path': '/InvoiceLine' }
+,'InvoiceItem': { 'path': '/InvoiceItem' }
 ,'MediaType': { 'path': '/MediaType' }
 ,'Playlist': { 'path': '/Playlist' }
 ,'PlaylistTrack': { 'path': '/PlaylistTrack' }

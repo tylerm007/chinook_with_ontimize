@@ -1,10 +1,10 @@
-<o-form attr="InvoiceLine" mode="tab" title="{{ 'INVOICELINE' | oTranslate }}" class="fill-form">
+<o-form attr="InvoiceItem" mode="tab" title="{{ 'INVOICEITEM' | oTranslate }}" class="fill-form">
     <div fxFill fxLayout="column" fxLayoutAlign="start">
         <o-table 
-            attr="InvoiceLineTable" 
-            service="InvoiceLine" 
-            entity="InvoiceLine" 
-            title="{{ 'INVOICELINE' | oTranslate }}"
+            attr="InvoiceItemTable" 
+            service="InvoiceItem" 
+            entity="InvoiceItem" 
+            title="{{ 'INVOICEITEM' | oTranslate }}"
             keys="InvoiceLineId"
             columns="InvoiceLineId;InvoiceId;TrackId;UnitPrice;Quantity" 
             header-actions="R;D"
@@ -24,18 +24,18 @@
             
             <o-table-column attr="InvoiceLineId" label=" Invoice Line Id*" type="integer" editable="yes" required="no" content-align="center"></o-table-column>
             
-            <o-table-column attr="InvoiceId" title="InvoiceId">
+            <o-table-column attr="InvoiceId" title="Invoice">
     <o-table-cell-renderer-service attr="InvoiceId" 
-        service="Invoice" entity="InvoiceType" columns="InvoiceId"
+        service="Invoice" entity="InvoiceType" columns="InvoiceId;InvoiceId"
         parent-keys="InvoiceLineId:InvoiceId"
         value-column="InvoiceId" keys="InvoiceId"
         visible-columns="InvoiceId" separator=" - " width="680px">
     </o-table-cell-renderer-service>
 </o-table-column>
             
-            <o-table-column attr="TrackId" title="TrackId">
+            <o-table-column attr="TrackId" title="Track">
     <o-table-cell-renderer-service attr="TrackId" 
-        service="Track" entity="TrackType" columns="TrackId"
+        service="Track" entity="TrackType" columns="TrackId;Name"
         parent-keys="InvoiceLineId:TrackId"
         value-column="Name" keys="TrackId"
         visible-columns="Name" separator=" - " width="680px">

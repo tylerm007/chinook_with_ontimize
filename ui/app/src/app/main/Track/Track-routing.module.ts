@@ -14,10 +14,10 @@ const routes: Routes = [
       }
     }
   },{
-    path: ':TrackId/InvoiceLine', loadChildren: () => import('../InvoiceLine/InvoiceLine.module').then(m => m.InvoiceLineModule),
+    path: ':TrackId/InvoiceItem', loadChildren: () => import('../InvoiceItem/InvoiceItem.module').then(m => m.InvoiceItemModule),
     data: {
         oPermission: {
-            permissionId: 'InvoiceLine-detail-permissions'
+            permissionId: 'InvoiceItem-detail-permissions'
         }
     }
 },{

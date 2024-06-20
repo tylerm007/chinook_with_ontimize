@@ -4,11 +4,11 @@ import { OChartModule } from 'ontimize-web-ngx-charts';
 import {OReportModule,OReportStoreService} from 'ontimize-web-ngx-report'
 
 @Component({
-  selector: 'Album-home',
-  templateUrl: './Album-home.component.html',
-  styleUrls: ['./Album-home.component.scss']
+  selector: 'InvoiceItem-home',
+  templateUrl: './InvoiceItem-home.component.html',
+  styleUrls: ['./InvoiceItem-home.component.scss']
 })
-export class AlbumHomeComponent implements AfterViewInit {
+export class InvoiceItemHomeComponent implements AfterViewInit {
 
   @ViewChild('table', { static: true }) table: OTableComponent;
 

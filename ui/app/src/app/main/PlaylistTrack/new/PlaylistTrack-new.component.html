@@ -1,72 +1,28 @@
 <o-breadcrumb [form]="PlaylistTrackForm" label-columns="" separator=" "></o-breadcrumb>
-<o-form #PlaylistTrackForm attr="PlaylistTrack_form_insert" service="PlaylistTrack" entity="PlaylistTrack" 
-keys="PlaylistId;TrackId" fxLayout="column" show-header="yes" header-actions="I"
-horizontal-scroll="yes"
-after-insert-mode="new" class="standalone-form-container">
+<o-form #PlaylistTrackForm attr="PlaylistTrack_form_insert" service="PlaylistTrack" entity="PlaylistTrack"
+        keys="PlaylistId;TrackId" fxLayout="column" show-header="yes" header-actions="I" horizontal-scroll="yes"
+        after-insert-mode="new" class="standalone-form-container">
 
-<o-row attr="row1" layout-align="start stretch">
-  <div fxLayout="row wrap" fxLayoutAlign="start start" fxFlex fxLayoutGap="14px">
-    
-        <o-list-picker 
-        attr="PlaylistId"
-        service="Playlist" 
-        entity="PlaylistType"
-        fxFlex="30" 
-        query-on-init="no" 
-        query-on-bind="yes" 
-        required="no" 
-        enabled="yes" 
-        filter="yes"
-        value-column="PlaylistId" 
-        value-column-type="INTEGER"  
-        keys="PlaylistId" 
-        columns="PlaylistId;Name" 
-        title=" Playlist Id*"
-        visible-columns="PlaylistId;Name" 
-        separator=" - " width="680px" class="form-field">
-</o-list-picker>
-      
-        <o-list-picker 
-        attr="PlaylistId"
-        service="Playlist" 
-        entity="PlaylistType"
-        fxFlex="30" 
-        query-on-init="no" 
-        query-on-bind="yes" 
-        required="no" 
-        enabled="yes" 
-        filter="yes"
-        value-column="PlaylistId" 
-        value-column-type="INTEGER"  
-        keys="PlaylistId" 
-        columns="PlaylistId;Name" 
-        title="PlaylistId"
-        visible-columns="PlaylistId;Name" 
-        separator=" - " width="680px" class="form-field">
-</o-list-picker>
-      
-        <o-list-picker 
-        attr="TrackId"
-        service="Track" 
-        entity="TrackType"
-        fxFlex="30" 
-        query-on-init="no" 
-        query-on-bind="yes" 
-        required="no" 
-        enabled="yes" 
-        filter="yes"
-        value-column="TrackId" 
-        value-column-type="INTEGER"  
-        keys="TrackId" 
-        columns="TrackId;Name" 
-        title="TrackId"
-        visible-columns="TrackId;Name" 
-        separator=" - " width="680px" class="form-field">
-</o-list-picker>
-      
-</div>
-</o-row>
+        <o-row attr="row1" layout-align="start stretch">
+                <div fxLayout="row wrap" fxLayoutAlign="start start" fxFlex fxLayoutGap="14px">
 
-<div layout-padding></div>
+                        <o-list-picker attr="PlaylistId" service="Playlist" entity="PlaylistType" fxFlex="30"
+                                query-on-init="no" query-on-bind="yes" required="no" enabled="yes" filter="yes"
+                                value-column="PlaylistId" value-column-type="INTEGER" keys="PlaylistId"
+                                columns="PlaylistId;Name" title="Playlist" visible-columns="PlaylistId;Name"
+                                separator=" - " width="680px" class="form-field">
+                        </o-list-picker>
+
+
+                        <o-list-picker attr="TrackId" service="Track" entity="TrackType" fxFlex="30" query-on-init="no"
+                                query-on-bind="yes" required="no" enabled="yes" filter="yes" value-column="TrackId"
+                                value-column-type="INTEGER" keys="TrackId" columns="TrackId;Name" title="Track"
+                                visible-columns="TrackId;Name" separator=" - " width="680px" class="form-field">
+                        </o-list-picker>
+
+                </div>
+        </o-row>
+
+        <div layout-padding></div>
 
 </o-form>

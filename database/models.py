@@ -1,5 +1,5 @@
 # coding: utf-8
-from sqlalchemy import Column, DECIMAL, DateTime, ForeignKey, Integer, String
+from sqlalchemy import Column, DateTime, ForeignKey, Integer, NVARCHAR, Numeric
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -9,9 +9,9 @@ from sqlalchemy.ext.declarative import declarative_base
 # Alter this file per your database maintenance policy
 #    See https://apilogicserver.github.io/Docs/Project-Rebuild/#rebuilding
 #
-# Created:  June 17, 2024 08:44:16
-# Database: mysql+pymysql://root:password@localhost:3308/Chinook
-# Dialect:  mysql
+# Created:  June 20, 2024 10:29:21
+# Database: sqlite:////Users/tylerband/dev/ApiLogicServer/ApiLogicServer-dev/build_and_test/chinook2/database/db.sqlite
+# Dialect:  sqlite
 #
 # mypy: ignore-errors
 ########################################################################################################################
@@ -33,23 +33,22 @@ metadata = Base.metadata
 #NullType = db.String  # datatype fixup
 #TIMESTAMP= db.TIMESTAMP
 
-from sqlalchemy.dialects.mysql import *
+from sqlalchemy.dialects.sqlite import *
 
 
 
 class Artist(SAFRSBaseX, Base):
-    __tablename__ = 'Artist'
+    __tablename__ = 'artists'
     _s_collection_name = 'Artist'  # type: ignore
     __bind_key__ = 'None'
 
     ArtistId = Column(Integer, primary_key=True)
-    Name = Column(String(120))
-    allow_client_generated_ids = True
+    Name = Column(NVARCHAR(120))
 
     # parent relationships (access parent)
 
     # child relationships (access children)
-    AlbumList : Mapped[List["Album"]] = relationship(back_populates="Artist")
+    AlbumList : Mapped[List["Album"]] = relationship(back_populates="artist")
 
     @jsonapi_attr
     def _check_sum_(self):  # type: ignore [no-redef]
@@ -65,33 +64,32 @@ class Artist(SAFRSBaseX, Base):
 
 
 class Employee(SAFRSBaseX, Base):
-    __tablename__ = 'Employee'
+    __tablename__ = 'employees'
     _s_collection_name = 'Employee'  # type: ignore
     __bind_key__ = 'None'
 
     EmployeeId = Column(Integer, primary_key=True)
-    LastName = Column(String(20), nullable=False)
-    FirstName = Column(String(20), nullable=False)
-    Title = Column(String(30))
-    ReportsTo = Column(ForeignKey('Employee.EmployeeId'), index=True)
+    LastName = Column(NVARCHAR(20), nullable=False)
+    FirstName = Column(NVARCHAR(20), nullable=False)
+    Title = Column(NVARCHAR(30))
+    ReportsTo = Column(ForeignKey('employees.EmployeeId'), index=True)
     BirthDate = Column(DateTime)
     HireDate = Column(DateTime)
-    Address = Column(String(70))
-    City = Column(String(40))
-    State = Column(String(40))
-    Country = Column(String(40))
-    PostalCode = Column(String(10))
-    Phone = Column(String(24))
-    Fax = Column(String(24))
-    Email = Column(String(60))
-    allow_client_generated_ids = True
+    Address = Column(NVARCHAR(70))
+    City = Column(NVARCHAR(40))
+    State = Column(NVARCHAR(40))
+    Country = Column(NVARCHAR(40))
+    PostalCode = Column(NVARCHAR(10))
+    Phone = Column(NVARCHAR(24))
+    Fax = Column(NVARCHAR(24))
+    Email = Column(NVARCHAR(60))
 
     # parent relationships (access parent)
     Employee : Mapped["Employee"] = relationship(remote_side=[EmployeeId], back_populates=("EmployeeList"))
 
     # child relationships (access children)
     EmployeeList : Mapped[List["Employee"]] = relationship(back_populates="Employee")
-    CustomerList : Mapped[List["Customer"]] = relationship(back_populates="Employee")
+    CustomerList : Mapped[List["Customer"]] = relationship(back_populates="employee")
 
     @jsonapi_attr
     def _check_sum_(self):  # type: ignore [no-redef]
@@ -107,18 +105,17 @@ class Employee(SAFRSBaseX, Base):
 
 
 class Genre(SAFRSBaseX, Base):
-    __tablename__ = 'Genre'
+    __tablename__ = 'genres'
     _s_collection_name = 'Genre'  # type: ignore
     __bind_key__ = 'None'
 
     GenreId = Column(Integer, primary_key=True)
-    Name = Column(String(120))
-    allow_client_generated_ids = True
+    Name = Column(NVARCHAR(120))
 
     # parent relationships (access parent)
 
     # child relationships (access children)
-    TrackList : Mapped[List["Track"]] = relationship(back_populates="Genre")
+    TrackList : Mapped[List["Track"]] = relationship(back_populates="genre")
 
     @jsonapi_attr
     def _check_sum_(self):  # type: ignore [no-redef]
@@ -134,18 +131,17 @@ class Genre(SAFRSBaseX, Base):
 
 
 class MediaType(SAFRSBaseX, Base):
-    __tablename__ = 'MediaType'
+    __tablename__ = 'media_types'
     _s_collection_name = 'MediaType'  # type: ignore
     __bind_key__ = 'None'
 
     MediaTypeId = Column(Integer, primary_key=True)
-    Name = Column(String(120))
-    allow_client_generated_ids = True
+    Name = Column(NVARCHAR(120))
 
     # parent relationships (access parent)
 
     # child relationships (access children)
-    TrackList : Mapped[List["Track"]] = relationship(back_populates="MediaType")
+    TrackList : Mapped[List["Track"]] = relationship(back_populates="media_type")
 
     @jsonapi_attr
     def _check_sum_(self):  # type: ignore [no-redef]
@@ -161,18 +157,17 @@ class MediaType(SAFRSBaseX, Base):
 
 
 class Playlist(SAFRSBaseX, Base):
-    __tablename__ = 'Playlist'
+    __tablename__ = 'playlists'
     _s_collection_name = 'Playlist'  # type: ignore
     __bind_key__ = 'None'
 
     PlaylistId = Column(Integer, primary_key=True)
-    Name = Column(String(120))
-    allow_client_generated_ids = True
+    Name = Column(NVARCHAR(120))
 
     # parent relationships (access parent)
 
     # child relationships (access children)
-    PlaylistTrackList : Mapped[List["PlaylistTrack"]] = relationship(back_populates="Playlist")
+    PlaylistTrackList : Mapped[List["PlaylistTrack"]] = relationship(back_populates="playlist")
 
     @jsonapi_attr
     def _check_sum_(self):  # type: ignore [no-redef]
@@ -188,20 +183,19 @@ class Playlist(SAFRSBaseX, Base):
 
 
 class Album(SAFRSBaseX, Base):
-    __tablename__ = 'Album'
+    __tablename__ = 'albums'
     _s_collection_name = 'Album'  # type: ignore
     __bind_key__ = 'None'
 
     AlbumId = Column(Integer, primary_key=True)
-    Title = Column(String(160), nullable=False)
-    ArtistId = Column(ForeignKey('Artist.ArtistId'), nullable=False, index=True)
-    allow_client_generated_ids = True
+    Title = Column(NVARCHAR(160), nullable=False)
+    ArtistId = Column(ForeignKey('artists.ArtistId'), nullable=False, index=True)
 
     # parent relationships (access parent)
-    Artist : Mapped["Artist"] = relationship(back_populates=("AlbumList"))
+    artist : Mapped["Artist"] = relationship(back_populates=("AlbumList"))
 
     # child relationships (access children)
-    TrackList : Mapped[List["Track"]] = relationship(back_populates="Album")
+    TrackList : Mapped[List["Track"]] = relationship(back_populates="album")
 
     @jsonapi_attr
     def _check_sum_(self):  # type: ignore [no-redef]
@@ -217,30 +211,29 @@ class Album(SAFRSBaseX, Base):
 
 
 class Customer(SAFRSBaseX, Base):
-    __tablename__ = 'Customer'
+    __tablename__ = 'customers'
     _s_collection_name = 'Customer'  # type: ignore
     __bind_key__ = 'None'
 
     CustomerId = Column(Integer, primary_key=True)
-    FirstName = Column(String(40), nullable=False)
-    LastName = Column(String(20), nullable=False)
-    Company = Column(String(80))
-    Address = Column(String(70))
-    City = Column(String(40))
-    State = Column(String(40))
-    Country = Column(String(40))
-    PostalCode = Column(String(10))
-    Phone = Column(String(24))
-    Fax = Column(String(24))
-    Email = Column(String(60), nullable=False)
-    SupportRepId = Column(ForeignKey('Employee.EmployeeId'), index=True)
-    allow_client_generated_ids = True
+    FirstName = Column(NVARCHAR(40), nullable=False)
+    LastName = Column(NVARCHAR(20), nullable=False)
+    Company = Column(NVARCHAR(80))
+    Address = Column(NVARCHAR(70))
+    City = Column(NVARCHAR(40))
+    State = Column(NVARCHAR(40))
+    Country = Column(NVARCHAR(40))
+    PostalCode = Column(NVARCHAR(10))
+    Phone = Column(NVARCHAR(24))
+    Fax = Column(NVARCHAR(24))
+    Email = Column(NVARCHAR(60), nullable=False)
+    SupportRepId = Column(ForeignKey('employees.EmployeeId'), index=True)
 
     # parent relationships (access parent)
-    Employee : Mapped["Employee"] = relationship(back_populates=("CustomerList"))
+    employee : Mapped["Employee"] = relationship(back_populates=("CustomerList"))
 
     # child relationships (access children)
-    InvoiceList : Mapped[List["Invoice"]] = relationship(back_populates="Customer")
+    InvoiceList : Mapped[List["Invoice"]] = relationship(back_populates="customer")
 
     @jsonapi_attr
     def _check_sum_(self):  # type: ignore [no-redef]
@@ -256,26 +249,25 @@ class Customer(SAFRSBaseX, Base):
 
 
 class Invoice(SAFRSBaseX, Base):
-    __tablename__ = 'Invoice'
+    __tablename__ = 'invoices'
     _s_collection_name = 'Invoice'  # type: ignore
     __bind_key__ = 'None'
 
     InvoiceId = Column(Integer, primary_key=True)
-    CustomerId = Column(ForeignKey('Customer.CustomerId'), nullable=False, index=True)
+    CustomerId = Column(ForeignKey('customers.CustomerId'), nullable=False, index=True)
     InvoiceDate = Column(DateTime, nullable=False)
-    BillingAddress = Column(String(70))
-    BillingCity = Column(String(40))
-    BillingState = Column(String(40))
-    BillingCountry = Column(String(40))
-    BillingPostalCode = Column(String(10))
-    Total : DECIMAL = Column(DECIMAL(10, 2), nullable=False)
-    allow_client_generated_ids = True
+    BillingAddress = Column(NVARCHAR(70))
+    BillingCity = Column(NVARCHAR(40))
+    BillingState = Column(NVARCHAR(40))
+    BillingCountry = Column(NVARCHAR(40))
+    BillingPostalCode = Column(NVARCHAR(10))
+    Total = Column(Numeric(10, 2), nullable=False)
 
     # parent relationships (access parent)
-    Customer : Mapped["Customer"] = relationship(back_populates=("InvoiceList"))
+    customer : Mapped["Customer"] = relationship(back_populates=("InvoiceList"))
 
     # child relationships (access children)
-    InvoiceLineList : Mapped[List["InvoiceLine"]] = relationship(back_populates="Invoice")
+    InvoiceItemList : Mapped[List["InvoiceItem"]] = relationship(back_populates="invoice")
 
     @jsonapi_attr
     def _check_sum_(self):  # type: ignore [no-redef]
@@ -291,29 +283,28 @@ class Invoice(SAFRSBaseX, Base):
 
 
 class Track(SAFRSBaseX, Base):
-    __tablename__ = 'Track'
+    __tablename__ = 'tracks'
     _s_collection_name = 'Track'  # type: ignore
     __bind_key__ = 'None'
 
     TrackId = Column(Integer, primary_key=True)
-    Name = Column(String(200), nullable=False)
-    AlbumId = Column(ForeignKey('Album.AlbumId'), index=True)
-    MediaTypeId = Column(ForeignKey('MediaType.MediaTypeId'), nullable=False, index=True)
-    GenreId = Column(ForeignKey('Genre.GenreId'), index=True)
-    Composer = Column(String(220))
+    Name = Column(NVARCHAR(200), nullable=False)
+    AlbumId = Column(ForeignKey('albums.AlbumId'), index=True)
+    MediaTypeId = Column(ForeignKey('media_types.MediaTypeId'), nullable=False, index=True)
+    GenreId = Column(ForeignKey('genres.GenreId'), index=True)
+    Composer = Column(NVARCHAR(220))
     Milliseconds = Column(Integer, nullable=False)
     Bytes = Column(Integer)
-    UnitPrice : DECIMAL = Column(DECIMAL(10, 2), nullable=False)
-    allow_client_generated_ids = True
+    UnitPrice = Column(Numeric(10, 2), nullable=False)
 
     # parent relationships (access parent)
-    Album : Mapped["Album"] = relationship(back_populates=("TrackList"))
-    Genre : Mapped["Genre"] = relationship(back_populates=("TrackList"))
-    MediaType : Mapped["MediaType"] = relationship(back_populates=("TrackList"))
+    album : Mapped["Album"] = relationship(back_populates=("TrackList"))
+    genre : Mapped["Genre"] = relationship(back_populates=("TrackList"))
+    media_type : Mapped["MediaType"] = relationship(back_populates=("TrackList"))
 
     # child relationships (access children)
-    InvoiceLineList : Mapped[List["InvoiceLine"]] = relationship(back_populates="Track")
-    PlaylistTrackList : Mapped[List["PlaylistTrack"]] = relationship(back_populates="Track")
+    InvoiceItemList : Mapped[List["InvoiceItem"]] = relationship(back_populates="track")
+    PlaylistTrackList : Mapped[List["PlaylistTrack"]] = relationship(back_populates="track")
 
     @jsonapi_attr
     def _check_sum_(self):  # type: ignore [no-redef]
@@ -328,21 +319,20 @@ class Track(SAFRSBaseX, Base):
     S_CheckSum = _check_sum_
 
 
-class InvoiceLine(SAFRSBaseX, Base):
-    __tablename__ = 'InvoiceLine'
-    _s_collection_name = 'InvoiceLine'  # type: ignore
+class InvoiceItem(SAFRSBaseX, Base):
+    __tablename__ = 'invoice_items'
+    _s_collection_name = 'InvoiceItem'  # type: ignore
     __bind_key__ = 'None'
 
     InvoiceLineId = Column(Integer, primary_key=True)
-    InvoiceId = Column(ForeignKey('Invoice.InvoiceId'), nullable=False, index=True)
-    TrackId = Column(ForeignKey('Track.TrackId'), nullable=False, index=True)
-    UnitPrice : DECIMAL = Column(DECIMAL(10, 2), nullable=False)
+    InvoiceId = Column(ForeignKey('invoices.InvoiceId'), nullable=False, index=True)
+    TrackId = Column(ForeignKey('tracks.TrackId'), nullable=False, index=True)
+    UnitPrice = Column(Numeric(10, 2), nullable=False)
     Quantity = Column(Integer, nullable=False)
-    allow_client_generated_ids = True
 
     # parent relationships (access parent)
-    Invoice : Mapped["Invoice"] = relationship(back_populates=("InvoiceLineList"))
-    Track : Mapped["Track"] = relationship(back_populates=("InvoiceLineList"))
+    invoice : Mapped["Invoice"] = relationship(back_populates=("InvoiceItemList"))
+    track : Mapped["Track"] = relationship(back_populates=("InvoiceItemList"))
 
     # child relationships (access children)
 
@@ -360,17 +350,17 @@ class InvoiceLine(SAFRSBaseX, Base):
 
 
 class PlaylistTrack(SAFRSBaseX, Base):
-    __tablename__ = 'PlaylistTrack'
+    __tablename__ = 'playlist_track'
     _s_collection_name = 'PlaylistTrack'  # type: ignore
     __bind_key__ = 'None'
 
-    PlaylistId = Column(ForeignKey('Playlist.PlaylistId'), primary_key=True, nullable=False)
-    TrackId = Column(ForeignKey('Track.TrackId'), primary_key=True, nullable=False, index=True)
+    PlaylistId = Column(ForeignKey('playlists.PlaylistId'), primary_key=True, nullable=False)
+    TrackId = Column(ForeignKey('tracks.TrackId'), primary_key=True, nullable=False, index=True)
     allow_client_generated_ids = True
 
     # parent relationships (access parent)
-    Playlist : Mapped["Playlist"] = relationship(back_populates=("PlaylistTrackList"))
-    Track : Mapped["Track"] = relationship(back_populates=("PlaylistTrackList"))
+    playlist : Mapped["Playlist"] = relationship(back_populates=("PlaylistTrackList"))
+    track : Mapped["Track"] = relationship(back_populates=("PlaylistTrackList"))
 
     # child relationships (access children)
 

@@ -126,7 +126,7 @@ if debug_value is not None:  # > export APILOGICPROJECT_DEBUG=True
         app_logger.setLevel(logging.DEBUG)
         app_logger.debug(f'\nDEBUG level set from env\n')
 app_logger.info(f'\nAPI Logic Project ({project_name}) Starting with CLI args: \n.. {args}\n')
-app_logger.info(f'Created June 17, 2024 08:44:16 at {str(current_path)}\n')
+app_logger.info(f'Created June 20, 2024 10:29:21 at {str(current_path)}\n')
 
 
 class ValidationErrorExt(ValidationError):

@@ -72,7 +72,7 @@
           <o-table-column attr="TrackId" title="Track">
     <o-table-cell-renderer-service attr="TrackId" 
         service="Track" entity="TrackType" columns="TrackId;Name"
-        parent-keys="TrackId:PlaylistId"
+        parent-keys="PlaylistId:TrackId"
         value-column="Name" keys="TrackId"
         visible-columns="Name" separator=" - " width="680px">
     </o-table-cell-renderer-service>

@@ -1,5 +1,5 @@
 # Chinook with Ontimize Angular front-end
-This is a proof of concept - a local MySQL Chinook database is used to demonstrate the Chinook model running an Ontimize Angular application.  The model was created using ApiLogicServer (app-create and app-build) feature to generate the complete application from the ui/app/app_model.yaml file. This file is used to help developers edit the templates and labels used in the generated Ontimize application.
+This is a proof of concept - a local SQLite Chinook database is used to demonstrate the Chinook model running an Ontimize Angular application.  The model was created using ApiLogicServer (app-create and app-build) feature to generate the complete application from the ui/app/app_model.yaml file. This file is used to help developers edit the templates and labels used in the generated Ontimize application.
 ![](./ui/images/Album.png)
 
 ## Ontimize Seed

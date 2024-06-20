@@ -2,7 +2,7 @@ import {CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OntimizeWebModule } from 'ontimize-web-ngx';
 import { SharedModule } from '../../shared/shared.module';
-import  {ARTIST_MODULE_DECLARATIONS, ArtistRoutingModule} from  './Artist-routing.module';
+import  {INVOICEITEM_MODULE_DECLARATIONS, InvoiceItemRoutingModule} from  './InvoiceItem-routing.module';
 
 @NgModule({
 
@@ -10,10 +10,10 @@ import  {ARTIST_MODULE_DECLARATIONS, ArtistRoutingModule} from  './Artist-routin
     SharedModule,
     CommonModule,
     OntimizeWebModule,
-    ArtistRoutingModule
+    InvoiceItemRoutingModule
   ],
-  declarations: ARTIST_MODULE_DECLARATIONS,
-  exports: ARTIST_MODULE_DECLARATIONS,
+  declarations: INVOICEITEM_MODULE_DECLARATIONS,
+  exports: INVOICEITEM_MODULE_DECLARATIONS,
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class ArtistModule { }
+export class InvoiceItemModule { }

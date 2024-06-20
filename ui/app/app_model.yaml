@@ -1,5 +1,5 @@
 about:
-  date: June 17, 2024 08:44:16
+  date: June 20, 2024 10:29:21
   recent_changes: works with modified safrs-react-admin
   version: 0.0.0
 api_root: '{http_type}://{swagger_host}:{port}/{api}'
@@ -20,7 +20,7 @@ entities:
     - name: Title
       required: true
       template: text
-      type: VARCHAR(160)
+      type: NVARCHAR(160)
     detail_template: detail_template.html
     exclude: 'false'
     favorite: AlbumId
@@ -38,7 +38,7 @@ entities:
     - direction: toone
       fks:
       - ArtistId
-      name: Artist
+      name: artist
       resource: Artist
     type: Album
   Artist:
@@ -48,7 +48,7 @@ entities:
       search: true
       sort: true
       template: text
-      type: VARCHAR(120)
+      type: NVARCHAR(120)
     - name: ArtistId
       template: integer
       type: INTEGER
@@ -75,42 +75,42 @@ entities:
       search: true
       sort: true
       template: text
-      type: VARCHAR(40)
+      type: NVARCHAR(40)
     - name: SupportRepId
       template: integer
       type: INTEGER
     - name: LastName
       required: true
       template: text
-      type: VARCHAR(20)
+      type: NVARCHAR(20)
     - name: Company
       template: text
-      type: VARCHAR(80)
+      type: NVARCHAR(80)
     - name: Address
       template: text
-      type: VARCHAR(70)
+      type: NVARCHAR(70)
     - name: City
       template: text
-      type: VARCHAR(40)
+      type: NVARCHAR(40)
     - name: State
       template: text
-      type: VARCHAR(40)
+      type: NVARCHAR(40)
     - name: Country
       template: text
-      type: VARCHAR(40)
+      type: NVARCHAR(40)
     - name: PostalCode
       template: text
-      type: VARCHAR(10)
+      type: NVARCHAR(10)
     - name: Phone
       template: text
-      type: VARCHAR(24)
+      type: NVARCHAR(24)
     - name: Fax
       template: text
-      type: VARCHAR(24)
+      type: NVARCHAR(24)
     - name: Email
       required: true
       template: text
-      type: VARCHAR(60)
+      type: NVARCHAR(60)
     - name: CustomerId
       template: integer
       type: INTEGER
@@ -131,7 +131,7 @@ entities:
     - direction: toone
       fks:
       - SupportRepId
-      name: Employee
+      name: employee
       resource: Employee
     type: Customer
   Employee:
@@ -142,17 +142,17 @@ entities:
       search: true
       sort: true
       template: text
-      type: VARCHAR(20)
+      type: NVARCHAR(20)
     - name: ReportsTo
       template: integer
       type: INTEGER
     - name: FirstName
       required: true
       template: text
-      type: VARCHAR(20)
+      type: NVARCHAR(20)
     - name: Title
       template: text
-      type: VARCHAR(30)
+      type: NVARCHAR(30)
     - name: BirthDate
       template: date
       type: DATETIME
@@ -161,28 +161,28 @@ entities:
       type: DATETIME
     - name: Address
       template: text
-      type: VARCHAR(70)
+      type: NVARCHAR(70)
     - name: City
       template: text
-      type: VARCHAR(40)
+      type: NVARCHAR(40)
     - name: State
       template: text
-      type: VARCHAR(40)
+      type: NVARCHAR(40)
     - name: Country
       template: text
-      type: VARCHAR(40)
+      type: NVARCHAR(40)
     - name: PostalCode
       template: text
-      type: VARCHAR(10)
+      type: NVARCHAR(10)
     - name: Phone
       template: text
-      type: VARCHAR(24)
+      type: NVARCHAR(24)
     - name: Fax
       template: text
-      type: VARCHAR(24)
+      type: NVARCHAR(24)
     - name: Email
       template: text
-      type: VARCHAR(60)
+      type: NVARCHAR(60)
     - name: EmployeeId
       template: integer
       type: INTEGER
@@ -218,7 +218,7 @@ entities:
       search: true
       sort: true
       template: text
-      type: VARCHAR(120)
+      type: NVARCHAR(120)
     - name: GenreId
       template: integer
       type: INTEGER
@@ -255,23 +255,23 @@ entities:
       type: DATETIME
     - name: BillingAddress
       template: text
-      type: VARCHAR(70)
+      type: NVARCHAR(70)
     - name: BillingCity
       template: text
-      type: VARCHAR(40)
+      type: NVARCHAR(40)
     - name: BillingState
       template: text
-      type: VARCHAR(40)
+      type: NVARCHAR(40)
     - name: BillingCountry
       template: text
-      type: VARCHAR(40)
+      type: NVARCHAR(40)
     - name: BillingPostalCode
       template: text
-      type: VARCHAR(10)
+      type: NVARCHAR(10)
     - name: Total
       required: true
       template: currency
-      type: DECIMAL(10, 2)
+      type: NUMERIC(10, 2)
     detail_template: detail_template.html
     exclude: 'false'
     favorite: InvoiceId
@@ -284,15 +284,15 @@ entities:
     - direction: tomany
       fks:
       - InvoiceId
-      name: InvoiceLineList
-      resource: InvoiceLine
+      name: InvoiceItemList
+      resource: InvoiceItem
     - direction: toone
       fks:
       - CustomerId
-      name: Customer
+      name: customer
       resource: Customer
     type: Invoice
-  InvoiceLine:
+  InvoiceItem:
     columns:
     - label: ' Invoice Line Id*'
       name: InvoiceLineId
@@ -311,7 +311,7 @@ entities:
     - name: UnitPrice
       required: true
       template: currency
-      type: DECIMAL(10, 2)
+      type: NUMERIC(10, 2)
     - name: Quantity
       required: true
       template: integer
@@ -328,14 +328,14 @@ entities:
     - direction: toone
       fks:
       - InvoiceId
-      name: Invoice
+      name: invoice
       resource: Invoice
     - direction: toone
       fks:
       - TrackId
-      name: Track
+      name: track
       resource: Track
-    type: InvoiceLine
+    type: InvoiceItem
   MediaType:
     columns:
     - label: ' Name*'
@@ -343,7 +343,7 @@ entities:
       search: true
       sort: true
       template: text
-      type: VARCHAR(120)
+      type: NVARCHAR(120)
     - name: MediaTypeId
       template: integer
       type: INTEGER
@@ -369,7 +369,7 @@ entities:
       search: true
       sort: true
       template: text
-      type: VARCHAR(120)
+      type: NVARCHAR(120)
     - name: PlaylistId
       template: integer
       type: INTEGER
@@ -415,12 +415,12 @@ entities:
     - direction: toone
       fks:
       - PlaylistId
-      name: Playlist
+      name: playlist
       resource: Playlist
     - direction: toone
       fks:
       - TrackId
-      name: Track
+      name: track
       resource: Track
     type: PlaylistTrack
   Track:
@@ -431,7 +431,7 @@ entities:
       search: true
       sort: true
       template: text
-      type: VARCHAR(200)
+      type: NVARCHAR(200)
     - name: AlbumId
       template: integer
       type: INTEGER
@@ -444,7 +444,7 @@ entities:
       type: INTEGER
     - name: Composer
       template: text
-      type: VARCHAR(220)
+      type: NVARCHAR(220)
     - name: Milliseconds
       required: true
       template: integer
@@ -455,7 +455,7 @@ entities:
     - name: UnitPrice
       required: true
       template: currency
-      type: DECIMAL(10, 2)
+      type: NUMERIC(10, 2)
     - name: TrackId
       template: integer
       type: INTEGER
@@ -471,8 +471,8 @@ entities:
     - direction: tomany
       fks:
       - TrackId
-      name: InvoiceLineList
-      resource: InvoiceLine
+      name: InvoiceItemList
+      resource: InvoiceItem
     - direction: tomany
       fks:
       - TrackId
@@ -481,17 +481,17 @@ entities:
     - direction: toone
       fks:
       - AlbumId
-      name: Album
+      name: album
       resource: Album
     - direction: toone
       fks:
       - GenreId
-      name: Genre
+      name: genre
       resource: Genre
     - direction: toone
       fks:
       - MediaTypeId
-      name: MediaType
+      name: media_type
       resource: MediaType
     type: Track
 settings:

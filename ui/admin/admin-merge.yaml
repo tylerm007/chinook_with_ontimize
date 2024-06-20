@@ -1,5 +1,12 @@
 about:
-  date: June 20, 2024 10:29:21
+  date: June 17, 2024 08:44:16
+  merged:
+    at: June 20, 2024 10:24:41
+    new_attributes: ''
+    new_resources: 'InvoiceItem '
+    new_tab_groups: 'Album.artist Customer.employee Invoice.InvoiceItemList Invoice.customer
+      Track.InvoiceItemList Track.album Track.genre Track.media_type PlaylistTrack.playlist
+      PlaylistTrack.track '
   recent_changes: works with modified safrs-react-admin
   version: 0.0.0
 api_root: '{http_type}://{swagger_host}:{port}/{api}'
@@ -24,6 +31,11 @@ resources:
       - AlbumId
       name: TrackList
       resource: Track
+    - direction: toone
+      fks:
+      - ArtistId
+      name: Artist
+      resource: Artist
     - direction: toone
       fks:
       - ArtistId
@@ -73,6 +85,11 @@ resources:
       - CustomerId
       name: InvoiceList
       resource: Invoice
+    - direction: toone
+      fks:
+      - SupportRepId
+      name: Employee
+      resource: Employee
     - direction: toone
       fks:
       - SupportRepId
@@ -156,6 +173,16 @@ resources:
     - direction: tomany
       fks:
       - InvoiceId
+      name: InvoiceLineList
+      resource: InvoiceLine
+    - direction: toone
+      fks:
+      - CustomerId
+      name: Customer
+      resource: Customer
+    - direction: tomany
+      fks:
+      - InvoiceId
       name: InvoiceItemList
       resource: InvoiceItem
     - direction: toone
@@ -191,6 +218,33 @@ resources:
       name: track
       resource: Track
     type: InvoiceItem
+    user_key: InvoiceLineId
+  InvoiceLine:
+    attributes:
+    - label: ' Invoice Line Id*'
+      name: InvoiceLineId
+      search: true
+      sort: true
+    - name: InvoiceId
+      required: true
+    - name: TrackId
+      required: true
+    - name: UnitPrice
+      required: true
+    - name: Quantity
+      required: true
+    tab_groups:
+    - direction: toone
+      fks:
+      - InvoiceId
+      name: Invoice
+      resource: Invoice
+    - direction: toone
+      fks:
+      - TrackId
+      name: Track
+      resource: Track
+    type: InvoiceLine
     user_key: InvoiceLineId
   MediaType:
     attributes:
@@ -234,6 +288,16 @@ resources:
     - direction: toone
       fks:
       - PlaylistId
+      name: Playlist
+      resource: Playlist
+    - direction: toone
+      fks:
+      - TrackId
+      name: Track
+      resource: Track
+    - direction: toone
+      fks:
+      - PlaylistId
       name: playlist
       resource: Playlist
     - direction: toone
@@ -265,13 +329,33 @@ resources:
     - direction: tomany
       fks:
       - TrackId
-      name: InvoiceItemList
-      resource: InvoiceItem
+      name: InvoiceLineList
+      resource: InvoiceLine
     - direction: tomany
       fks:
       - TrackId
       name: PlaylistTrackList
       resource: PlaylistTrack
+    - direction: toone
+      fks:
+      - AlbumId
+      name: Album
+      resource: Album
+    - direction: toone
+      fks:
+      - GenreId
+      name: Genre
+      resource: Genre
+    - direction: toone
+      fks:
+      - MediaTypeId
+      name: MediaType
+      resource: MediaType
+    - direction: tomany
+      fks:
+      - TrackId
+      name: InvoiceItemList
+      resource: InvoiceItem
     - direction: toone
       fks:
       - AlbumId

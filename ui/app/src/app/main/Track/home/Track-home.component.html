@@ -26,9 +26,9 @@
             
             <o-table-column attr="AlbumId" title="Album">
     <o-table-cell-renderer-service attr="AlbumId" 
-        service="Album" entity="AlbumType" columns="AlbumId;AlbumId"
-        parent-keys="AlbumId:TrackId"
-        value-column="AlbumId" keys="AlbumId"
+        service="Album" entity="AlbumType" columns="AlbumId;Title"
+        parent-keys="TrackId:AlbumId"
+        value-column="Title" keys="AlbumId"
         visible-columns="AlbumId" separator=" - " width="680px">
     </o-table-cell-renderer-service>
 </o-table-column>
@@ -36,7 +36,7 @@
             <o-table-column attr="GenreId" title="Genre">
     <o-table-cell-renderer-service attr="GenreId" 
         service="Genre" entity="GenreType" columns="GenreId;Name"
-        parent-keys="GenreId:TrackId"
+        parent-keys="TrackId:GenreId"
         value-column="Name" keys="GenreId"
         visible-columns="Name" separator=" - " width="680px">
     </o-table-cell-renderer-service>
@@ -45,7 +45,7 @@
             <o-table-column attr="MediaTypeId" title="MediaType">
     <o-table-cell-renderer-service attr="MediaTypeId" 
         service="MediaType" entity="MediaTypeType" columns="MediaTypeId;Name"
-        parent-keys="MediaTypeId:TrackId"
+        parent-keys="TrackId:MediaTypeId"
         value-column="Name" keys="MediaTypeId"
         visible-columns="Name" separator=" - " width="680px">
     </o-table-cell-renderer-service>

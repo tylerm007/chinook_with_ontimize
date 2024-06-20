@@ -27,7 +27,7 @@
             <o-table-column attr="CustomerId" title="Customer">
     <o-table-cell-renderer-service attr="CustomerId" 
         service="Customer" entity="CustomerType" columns="CustomerId;FirstName"
-        parent-keys="CustomerId:InvoiceId"
+        parent-keys="InvoiceId:CustomerId"
         value-column="FirstName" keys="CustomerId"
         visible-columns="FirstName" separator=" - " width="680px">
     </o-table-cell-renderer-service>

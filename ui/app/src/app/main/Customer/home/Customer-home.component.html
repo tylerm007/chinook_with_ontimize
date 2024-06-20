@@ -8,7 +8,7 @@
             keys="CustomerId"
             columns="FirstName;SupportRepId;LastName;Company;Address;City;State;Country;PostalCode;Phone;Fax;Email;CustomerId" 
             header-actions="R;D"
-            visible-columns="FirstName;SupportRepId;LastName;Company;Address;City;State;Country;PostalCode;Phone;Fax;Email;CustomerId"  
+            visible-columns="FirstName;LastName;Company;Address;City;State;Country;PostalCode;Phone;Fax;Email;CustomerId;SupportRepId"  
             sort-columns="FirstName" 
             query-rows="20" 
             quick-filter="yes"
@@ -24,17 +24,17 @@
             
             <o-table-column attr="FirstName" label=" First Name*" editable="yes" required="yes" content-align="left"></o-table-column>
             
-            <o-table-column attr="SupportRepId" title="SupportRep">
-    <o-table-cell-renderer-service attr="SupportRepId" 
-        service="Employee" entity="EmployeeType" columns="SupportRepId;LastName"
-        parent-keys="SupportRepId:CustomerId"
-        value-column="LastName" keys="SupportRepId"
-        visible-columns="LastName" separator=" - " width="680px">
-    </o-table-cell-renderer-service>
-</o-table-column>
+
             
             <o-table-column attr="LastName" label="LastName" editable="yes" required="yes" content-align="left"></o-table-column>
-            
+            <o-table-column attr="SupportRepId" title="SupportRep">
+                <!-- o-table-cell-renderer-service attr="SupportRepId" 
+                    service="Employee" entity="EmployeeType" columns="EmployeeId;LastName"
+                    parent-keys="SupportRepId:CustomerId"
+                    value-column="LastName" keys="SupportRepId"
+                    visible-columns="LastName" separator=" - " width="680px">
+                </o-table-cell-renderer-service -->
+            </o-table-column>
             <o-table-column attr="Company" label="Company" editable="yes" required="no" content-align="left"></o-table-column>
             
             <o-table-column attr="Address" label="Address" editable="yes" required="no" content-align="left"></o-table-column>

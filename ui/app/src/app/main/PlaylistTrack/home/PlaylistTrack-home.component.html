@@ -6,9 +6,9 @@
             entity="PlaylistTrack" 
             title="{{ 'PLAYLISTTRACK' | oTranslate }}"
             keys="PlaylistId;TrackId"
-            columns="PlaylistId;PlaylistId;TrackId" 
+            columns="PlaylistId;TrackId" 
             header-actions="R;D"
-            visible-columns="PlaylistId;PlaylistId;TrackId"  
+            visible-columns="PlaylistId;TrackId"  
             sort-columns="PlaylistId" 
             query-rows="20" 
             quick-filter="yes"
@@ -31,14 +31,6 @@
     </o-table-cell-renderer-service>
 </o-table-column>
             
-            <o-table-column attr="PlaylistId" title="Playlist">
-    <o-table-cell-renderer-service attr="PlaylistId" 
-        service="Playlist" entity="PlaylistType" columns="PlaylistId;Name"
-        parent-keys="PlaylistId:PlaylistId"
-        value-column="Name" keys="PlaylistId"
-        visible-columns="Name" separator=" - " width="680px">
-    </o-table-cell-renderer-service>
-</o-table-column>
             
             <o-table-column attr="TrackId" title="Track">
     <o-table-cell-renderer-service attr="TrackId" 

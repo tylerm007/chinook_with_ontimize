@@ -1,45 +1,76 @@
 <div class="container">
-  <o-form-container breadcrumb="yes" breadcrumb-label-columns="Name" breadcrumb-separator=", " class="fill-form">
-    <o-form #form attr="Artist_form_edit" service="Artist" entity="Artist" fxLayout="column" show-header="yes"
-      header-actions="R;I;U;D" #oDetailForm keys="ArtistId" keys-sql-types="INTEGER" show-header-navigation="yes"
-      (onDataLoaded)="onDataLoaded($event)">
+<o-form-container breadcrumb="yes" breadcrumb-label-columns="Name" breadcrumb-separator=", " class="fill-form">
+      <o-form #form attr="Artist_form_edit" 
+        service="Artist" 
+        entity="Artist" 
+        fxLayout="column" 
+        show-header="yes" 
+        header-actions="R;I;U;D"
+        #oDetailForm keys="ArtistId" 
+        keys-sql-types="INTEGER" 
+        show-header-navigation="yes"
+        (onDataLoaded)="onDataLoaded($event)">
 
-      <o-row attr="row1" layout-align="start stretch">
-        <div fxLayout="row wrap" fxLayoutAlign="start start" fxFlex fxLayoutGap="14px">
-
-          <o-text-input attr="Name" label=" Name*" enabled="yes" required="no" fxFlex="20%"
-            class="form-field"></o-text-input>
-
-          <o-integer-input attr="ArtistId" label="ArtistId" type="integer" editable="yes"
-            required="no"></o-integer-input>
-
-        </div>
-      </o-row>
-
+  <o-row attr="row1" layout-align="start stretch">
+    <div fxLayout="row wrap" fxLayoutAlign="start start" fxFlex fxLayoutGap="14px">
+      
+      <o-text-input attr="Name" label=" Name*" enabled="yes" required="no" fxFlex="20%" class="form-field"></o-text-input>
+      
+      <o-integer-input attr="ArtistId" label="ArtistId" type="integer" editable="yes" required="no" ></o-integer-input>
+      
+    </div>
+  </o-row>
+      
       <mat-tab-group fxFill>
-
+        
         <mat-tab label="ALBUM-ArtistId">
-          <div layout-padding>
-            <o-table attr="AlbumTable" service="Album" entity="Album" keys="AlbumId" parent-keys="ArtistId:ArtistId"
-              columns="AlbumId;ArtistId;Title" horizontal-scroll="yes" detail-form-route="Album" edit-form-route="Album"
-              visible-columns="AlbumId;ArtistId;Title" sort-columns="AlbumId" query-rows="25" quick-filter="yes"
-              row-height="medium" select-all-checkbox="true" pageable="yes" auto-adjust="true" virtual-scroll="yes"
-              insert-button="yes" delete-button="yes" fixed-header="true" class="vertical-padding-8"
-              edition-mode="dblclick" horizontal-scroll="yes" class="fill-form">
-
-              <o-table-column attr="AlbumId" label=" Album Id*" type="integer" editable="yes" required="no"
-                content-align="center"></o-table-column>
-
-              <o-table-column attr="Title" label="Title" editable="yes" required="yes"
-                content-align="left"></o-table-column>
-
-              <o-table-paginator page-size-options="25;50;100"></o-table-paginator>
-            </o-table>
-          </div>
-        </mat-tab>
-
+    <div layout-padding>
+      <o-table 
+        attr="AlbumTable" 
+        service="Album" 
+        entity="Album" 
+        keys="AlbumId"
+        parent-keys="ArtistId:ArtistId"
+        columns="AlbumId;ArtistId;Title"  
+        horizontal-scroll="yes"
+        detail-form-route="Album" 
+        edit-form-route="Album"
+        visible-columns="AlbumId;ArtistId;Title"  
+        sort-columns="AlbumId" 
+        query-rows="25" 
+        quick-filter="yes"
+        row-height="medium" 
+        select-all-checkbox="true" 
+        pageable="yes"  
+        auto-adjust="true" 
+        virtual-scroll="yes" 
+        insert-button="yes" 
+        delete-button="yes" 
+        fixed-header="true" 
+        class="vertical-padding-8"
+        edition-mode="dblclick" 
+        horizontal-scroll="yes" class="fill-form">
+        
+          <o-table-column attr="AlbumId" label=" Album Id*" type="integer" editable="yes" required="no" content-align="center"></o-table-column>
+        
+          <o-table-column attr="ArtistId" title="Artist">
+    <o-table-cell-renderer-service attr="ArtistId" 
+        service="Artist" entity="ArtistType" columns="ArtistId;Name"
+        parent-keys="ArtistId:ArtistId"
+        value-column="Name" keys="ArtistId"
+        visible-columns="Name" separator=" - " width="680px">
+    </o-table-cell-renderer-service>
+</o-table-column>
+        
+          <o-table-column attr="Title" label="Title" editable="yes" required="yes" content-align="left"></o-table-column>
+        
+        <o-table-paginator page-size-options="25;50;100"></o-table-paginator>
+      </o-table>
+    </div>
+</mat-tab>
+        
       </mat-tab-group>
-
+      
     </o-form>
   </o-form-container>
 </div>

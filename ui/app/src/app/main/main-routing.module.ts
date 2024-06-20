@@ -25,7 +25,7 @@ export const routes: Routes = [
     
         { path: 'Invoice', loadChildren: () => import('./Invoice/Invoice.module').then(m => m.InvoiceModule) },
     
-        { path: 'InvoiceLine', loadChildren: () => import('./InvoiceLine/InvoiceLine.module').then(m => m.InvoiceLineModule) },
+        { path: 'InvoiceItem', loadChildren: () => import('./InvoiceItem/InvoiceItem.module').then(m => m.InvoiceItemModule) },
     
         { path: 'MediaType', loadChildren: () => import('./MediaType/MediaType.module').then(m => m.MediaTypeModule) },
     

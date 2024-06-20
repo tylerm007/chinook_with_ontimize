@@ -29,8 +29,8 @@
         value-column="CustomerId" 
         value-column-type="INTEGER"  
         keys="CustomerId" 
-        columns="CustomerId;FirstName" 
-        title="CustomerId"
+        columns="CustomerId;CustomerId;FirstName" 
+        title="Customer"
         visible-columns="CustomerId;FirstName" 
         separator=" - " width="680px" class="form-field">
 </o-list-picker>
@@ -54,18 +54,18 @@
       
       <mat-tab-group fxFill>
         
-        <mat-tab label="INVOICELINE-InvoiceId">
+        <mat-tab label="INVOICEITEM-InvoiceId">
     <div layout-padding>
       <o-table 
-        attr="InvoiceLineTable" 
-        service="InvoiceLine" 
-        entity="InvoiceLine" 
+        attr="InvoiceItemTable" 
+        service="InvoiceItem" 
+        entity="InvoiceItem" 
         keys="InvoiceLineId"
         parent-keys="InvoiceId:InvoiceId"
         columns="InvoiceLineId;InvoiceId;TrackId;UnitPrice;Quantity"  
         horizontal-scroll="yes"
-        detail-form-route="InvoiceLine" 
-        edit-form-route="InvoiceLine"
+        detail-form-route="InvoiceItem" 
+        edit-form-route="InvoiceItem"
         visible-columns="InvoiceLineId;InvoiceId;TrackId;UnitPrice;Quantity"  
         sort-columns="InvoiceLineId" 
         query-rows="25" 
@@ -96,7 +96,7 @@
           <o-table-column attr="TrackId" title="Track">
     <o-table-cell-renderer-service attr="TrackId" 
         service="Track" entity="TrackType" columns="TrackId;Name"
-        parent-keys="TrackId:InvoiceId"
+        parent-keys="InvoiceId:TrackId"
         value-column="Name" keys="TrackId"
         visible-columns="Name" separator=" - " width="680px">
     </o-table-cell-renderer-service>

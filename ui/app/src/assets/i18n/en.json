@@ -63,7 +63,7 @@
   "ReportsTo": "ReportsTo",
   "GENRE": "Genre",
   "GenreId": "GenreId",
-  "INVOICELINE": "InvoiceLine",
+  "INVOICEITEM": "InvoiceItem",
   "InvoiceLineId": " Invoice Line Id*",
   "Quantity": "Quantity",
   "MEDIATYPE": "MediaType",

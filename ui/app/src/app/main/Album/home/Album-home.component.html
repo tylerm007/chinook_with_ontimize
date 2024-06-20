@@ -14,7 +14,7 @@
             quick-filter="yes"
             row-height="medium" 
             select-all-checkbox="true" 
-            pageable="no"  
+            pageable="yes"  
             auto-adjust="true" 
             virtual-scroll="yes" 
             edition-mode="dblclick"
@@ -27,7 +27,7 @@
             <o-table-column attr="ArtistId" title="Artist">
     <o-table-cell-renderer-service attr="ArtistId" 
         service="Artist" entity="ArtistType" columns="ArtistId;Name"
-        parent-keys="ArtistId:AlbumId"
+        parent-keys="AlbumId:ArtistId"
         value-column="Name" keys="ArtistId"
         visible-columns="Name" separator=" - " width="680px">
     </o-table-cell-renderer-service>

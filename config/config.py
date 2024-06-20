@@ -100,8 +100,10 @@ class Config:
     running_at = Path(__file__)
     project_abs_dir = running_at.parent.absolute()
 
-    # Database
-    SQLALCHEMY_DATABASE_URI : typing.Optional[str] = f"mysql+pymysql://root:password@localhost:3308/Chinook"
+    # Database MySQL
+    #SQLALCHEMY_DATABASE_URI : typing.Optional[str] = f"mysql+pymysql://root:password@localhost:3308/Chinook"
+    SQLALCHEMY_DATABASE_URI : typing.Optional[str] = f"sqlite:///../database/db.sqlite"
+    
     # override SQLALCHEMY_DATABASE_URI here as required
 
     app_logger.debug(f'config.py - SQLALCHEMY_DATABASE_URI: {SQLALCHEMY_DATABASE_URI}')

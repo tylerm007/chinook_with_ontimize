@@ -1,212 +1,119 @@
 <div class="container">
-<o-form-container breadcrumb="yes" breadcrumb-label-columns="Name" breadcrumb-separator=", " class="fill-form">
-      <o-form #form attr="Track_form_edit" 
-        service="Track" 
-        entity="Track" 
-        fxLayout="column" 
-        show-header="yes" 
-        header-actions="R;I;U;D"
-        #oDetailForm keys="TrackId" 
-        keys-sql-types="INTEGER" 
-        show-header-navigation="yes"
-        (onDataLoaded)="onDataLoaded($event)">
+  <o-form-container breadcrumb="yes" breadcrumb-label-columns="Name" breadcrumb-separator=", " class="fill-form">
+    <o-form #form attr="Track_form_edit" service="Track" entity="Track" fxLayout="column" show-header="yes"
+      header-actions="R;I;U;D" #oDetailForm keys="TrackId" keys-sql-types="INTEGER" show-header-navigation="yes"
+      (onDataLoaded)="onDataLoaded($event)">
 
-  <o-row attr="row1" layout-align="start stretch">
-    <div fxLayout="row wrap" fxLayoutAlign="start start" fxFlex fxLayoutGap="14px">
-      
-      <o-text-input attr="Name" label=" Name*" enabled="yes" required="yes" fxFlex="20%" class="form-field"></o-text-input>
-      
-      <o-list-picker 
-        attr="AlbumId"
-        service="Album" 
-        entity="AlbumType"
-        fxFlex="30" 
-        query-on-init="no" 
-        query-on-bind="yes" 
-        required="no" 
-        enabled="yes" 
-        filter="yes"
-        value-column="AlbumId" 
-        value-column-type="INTEGER"  
-        keys="AlbumId" 
-        columns="AlbumId;AlbumId" 
-        title="AlbumId"
-        visible-columns="AlbumId;AlbumId" 
-        separator=" - " width="680px" class="form-field">
-</o-list-picker>
-      
-      <o-list-picker 
-        attr="GenreId"
-        service="Genre" 
-        entity="GenreType"
-        fxFlex="30" 
-        query-on-init="no" 
-        query-on-bind="yes" 
-        required="no" 
-        enabled="yes" 
-        filter="yes"
-        value-column="GenreId" 
-        value-column-type="INTEGER"  
-        keys="GenreId" 
-        columns="GenreId;Name" 
-        title="GenreId"
-        visible-columns="GenreId;Name" 
-        separator=" - " width="680px" class="form-field">
-</o-list-picker>
-      
-      <o-list-picker 
-        attr="MediaTypeId"
-        service="MediaType" 
-        entity="MediaTypeType"
-        fxFlex="30" 
-        query-on-init="no" 
-        query-on-bind="yes" 
-        required="yes" 
-        enabled="yes" 
-        filter="yes"
-        value-column="MediaTypeId" 
-        value-column-type="INTEGER"  
-        keys="MediaTypeId" 
-        columns="MediaTypeId;Name" 
-        title="MediaTypeId"
-        visible-columns="MediaTypeId;Name" 
-        separator=" - " width="680px" class="form-field">
-</o-list-picker>
-      
-      <o-text-input attr="Composer" label="Composer" enabled="yes" required="no" fxFlex="20%" class="form-field"></o-text-input>
-      
-      <o-integer-input attr="Milliseconds" label="Milliseconds" type="integer" editable="yes" required="yes" ></o-integer-input>
-      
-      <o-integer-input attr="Bytes" label="Bytes" type="integer" editable="yes" required="no" ></o-integer-input>
-      
-      <o-currency-input attr="UnitPrice" title="UnitPrice" type="currency" editable="yes" required="yes" currency-symbol="$" currency-symbol-position="left" thousand-separator="," decimal-separator="."></o-currency-input>
-      
-      <o-integer-input attr="TrackId" label="TrackId" type="integer" editable="yes" required="no" ></o-integer-input>
-      
-    </div>
-  </o-row>
-      
+      <o-row attr="row1" layout-align="start stretch">
+        <div fxLayout="row wrap" fxLayoutAlign="start start" fxFlex fxLayoutGap="14px">
+
+          <o-text-input attr="Name" label=" Name*" enabled="yes" required="yes" fxFlex="20%"
+            class="form-field"></o-text-input>
+
+          <o-list-picker attr="AlbumId" service="Album" entity="AlbumType" fxFlex="30" query-on-init="no"
+            query-on-bind="yes" required="no" enabled="yes" filter="yes" value-column="AlbumId"
+            value-column-type="INTEGER" keys="AlbumId" columns="AlbumId;Title" title="Album"
+            visible-columns="AlbumId;Title" separator=" - " width="680px" class="form-field">
+          </o-list-picker>
+
+          <o-list-picker attr="GenreId" service="Genre" entity="GenreType" fxFlex="30" query-on-init="no"
+            query-on-bind="yes" required="no" enabled="yes" filter="yes" value-column="GenreId"
+            value-column-type="INTEGER" keys="GenreId" columns="GenreId;Name" title="Genre"
+            visible-columns="GenreId;Name" separator=" - " width="680px" class="form-field">
+          </o-list-picker>
+
+          <o-list-picker attr="MediaTypeId" service="MediaType" entity="MediaTypeType" fxFlex="30" query-on-init="no"
+            query-on-bind="yes" required="yes" enabled="yes" filter="yes" value-column="MediaTypeId"
+            value-column-type="INTEGER" keys="MediaTypeId" columns="MediaTypeId;Name" title="MediaType"
+            visible-columns="MediaTypeId;Name" separator=" - " width="680px" class="form-field">
+          </o-list-picker>
+
+          <o-text-input attr="Composer" label="Composer" enabled="yes" required="no" fxFlex="20%"
+            class="form-field"></o-text-input>
+
+          <o-integer-input attr="Milliseconds" label="Milliseconds" type="integer" editable="yes"
+            required="yes"></o-integer-input>
+
+          <o-integer-input attr="Bytes" label="Bytes" type="integer" editable="yes" required="no"></o-integer-input>
+
+          <o-currency-input attr="UnitPrice" title="UnitPrice" type="currency" editable="yes" required="yes"
+            currency-symbol="$" currency-symbol-position="left" thousand-separator=","
+            decimal-separator="."></o-currency-input>
+
+          <o-integer-input attr="TrackId" label="TrackId" type="integer" editable="yes" required="no"></o-integer-input>
+
+        </div>
+      </o-row>
+
       <mat-tab-group fxFill>
-        
-        <mat-tab label="INVOICELINE-TrackId">
-    <div layout-padding>
-      <o-table 
-        attr="InvoiceLineTable" 
-        service="InvoiceLine" 
-        entity="InvoiceLine" 
-        keys="InvoiceLineId"
-        parent-keys="TrackId:TrackId"
-        columns="InvoiceLineId;InvoiceId;TrackId;UnitPrice;Quantity"  
-        horizontal-scroll="yes"
-        detail-form-route="InvoiceLine" 
-        edit-form-route="InvoiceLine"
-        visible-columns="InvoiceLineId;InvoiceId;TrackId;UnitPrice;Quantity"  
-        sort-columns="InvoiceLineId" 
-        query-rows="25" 
-        quick-filter="yes"
-        row-height="medium" 
-        select-all-checkbox="true" 
-        pageable="yes"  
-        auto-adjust="true" 
-        virtual-scroll="yes" 
-        insert-button="yes" 
-        delete-button="yes" 
-        fixed-header="true" 
-        class="vertical-padding-8"
-        edition-mode="dblclick" 
-        horizontal-scroll="yes" class="fill-form">
-        
-          <o-table-column attr="InvoiceLineId" label=" Invoice Line Id*" type="integer" editable="yes" required="no" content-align="center"></o-table-column>
-        
-          <o-table-column attr="InvoiceId" title="Invoice">
-    <o-table-cell-renderer-service attr="InvoiceId" 
-        service="Invoice" entity="InvoiceType" columns="InvoiceId;InvoiceId"
-        parent-keys="InvoiceId:TrackId"
-        value-column="InvoiceId" keys="InvoiceId"
-        visible-columns="InvoiceId" separator=" - " width="680px">
-    </o-table-cell-renderer-service>
-</o-table-column>
-        
-          <o-table-column attr="TrackId" title="Track">
-    <o-table-cell-renderer-service attr="TrackId" 
-        service="Track" entity="TrackType" columns="TrackId;Name"
-        parent-keys="TrackId:TrackId"
-        value-column="Name" keys="TrackId"
-        visible-columns="Name" separator=" - " width="680px">
-    </o-table-cell-renderer-service>
-</o-table-column>
-        
-          <o-table-column attr="UnitPrice" label="UnitPrice" type="currency" editable="yes" required="yes" currency-symbol="$" currency-symbol-position="left" thousand-separator=","decimal-separator="."></o-table-column>
-        
-          <o-table-column attr="Quantity" label="Quantity" type="integer" editable="yes" required="yes" content-align="center"></o-table-column>
-        
-        <o-table-paginator page-size-options="25;50;100"></o-table-paginator>
-      </o-table>
-    </div>
-</mat-tab>
-        
+
+        <mat-tab label="INVOICEITEM-TrackId">
+          <div layout-padding>
+            <o-table attr="InvoiceItemTable" service="InvoiceItem" entity="InvoiceItem" keys="InvoiceLineId"
+              parent-keys="TrackId:TrackId" columns="InvoiceLineId;InvoiceId;TrackId;UnitPrice;Quantity"
+              horizontal-scroll="yes" detail-form-route="InvoiceItem" edit-form-route="InvoiceItem"
+              visible-columns="InvoiceLineId;InvoiceId;TrackId;UnitPrice;Quantity" sort-columns="InvoiceLineId"
+              query-rows="25" quick-filter="yes" row-height="medium" select-all-checkbox="true" pageable="yes"
+              auto-adjust="true" virtual-scroll="yes" insert-button="yes" delete-button="yes" fixed-header="true"
+              class="vertical-padding-8" edition-mode="dblclick" horizontal-scroll="yes" class="fill-form">
+
+              <o-table-column attr="InvoiceLineId" label=" Invoice Line Id*" type="integer" editable="yes" required="no"
+                content-align="center"></o-table-column>
+
+              <o-table-column attr="InvoiceId" title="Invoice">
+              </o-table-column>
+
+              <o-table-column attr="TrackId" title="Track">
+                <o-table-cell-renderer-service attr="TrackId" service="Track" entity="TrackType" columns="TrackId;Name"
+                  parent-keys="TrackId:TrackId" value-column="Name" keys="TrackId" visible-columns="Name"
+                  separator=" - " width="680px">
+                </o-table-cell-renderer-service>
+              </o-table-column>
+
+              <o-table-column attr="UnitPrice" label="UnitPrice" type="currency" editable="yes" required="yes"
+                currency-symbol="$" currency-symbol-position="left" thousand-separator=","
+                decimal-separator="."></o-table-column>
+
+              <o-table-column attr="Quantity" label="Quantity" type="integer" editable="yes" required="yes"
+                content-align="center"></o-table-column>
+
+              <o-table-paginator page-size-options="25;50;100"></o-table-paginator>
+            </o-table>
+          </div>
+        </mat-tab>
+
         <mat-tab label="PLAYLISTTRACK-TrackId">
-    <div layout-padding>
-      <o-table 
-        attr="PlaylistTrackTable" 
-        service="PlaylistTrack" 
-        entity="PlaylistTrack" 
-        keys="PlaylistId;TrackId"
-        parent-keys="TrackId:TrackId"
-        columns="PlaylistId;PlaylistId;TrackId"  
-        horizontal-scroll="yes"
-        detail-form-route="PlaylistTrack" 
-        edit-form-route="PlaylistTrack"
-        visible-columns="PlaylistId;PlaylistId;TrackId"  
-        sort-columns="PlaylistId" 
-        query-rows="25" 
-        quick-filter="yes"
-        row-height="medium" 
-        select-all-checkbox="true" 
-        pageable="yes"  
-        auto-adjust="true" 
-        virtual-scroll="yes" 
-        insert-button="yes" 
-        delete-button="yes" 
-        fixed-header="true" 
-        class="vertical-padding-8"
-        edition-mode="dblclick" 
-        horizontal-scroll="yes" class="fill-form">
-        
-          <o-table-column attr="PlaylistId" title="Playlist">
-    <o-table-cell-renderer-service attr="PlaylistId" 
-        service="Playlist" entity="PlaylistType" columns="PlaylistId;Name"
-        parent-keys="PlaylistId:TrackId"
-        value-column="Name" keys="PlaylistId"
-        visible-columns="Name" separator=" - " width="680px">
-    </o-table-cell-renderer-service>
-</o-table-column>
-        
-          <o-table-column attr="PlaylistId" title="Playlist">
-    <o-table-cell-renderer-service attr="PlaylistId" 
-        service="Playlist" entity="PlaylistType" columns="PlaylistId;Name"
-        parent-keys="PlaylistId:TrackId"
-        value-column="Name" keys="PlaylistId"
-        visible-columns="Name" separator=" - " width="680px">
-    </o-table-cell-renderer-service>
-</o-table-column>
-        
-          <o-table-column attr="TrackId" title="Track">
-    <o-table-cell-renderer-service attr="TrackId" 
-        service="Track" entity="TrackType" columns="TrackId;Name"
-        parent-keys="TrackId:TrackId"
-        value-column="Name" keys="TrackId"
-        visible-columns="Name" separator=" - " width="680px">
-    </o-table-cell-renderer-service>
-</o-table-column>
-        
-        <o-table-paginator page-size-options="25;50;100"></o-table-paginator>
-      </o-table>
-    </div>
-</mat-tab>
-        
+          <div layout-padding>
+            <o-table attr="PlaylistTrackTable" service="PlaylistTrack" entity="PlaylistTrack" keys="PlaylistId;TrackId"
+              parent-keys="TrackId:TrackId" columns="PlaylistId;TrackId" horizontal-scroll="yes"
+              detail-form-route="PlaylistTrack" edit-form-route="PlaylistTrack" visible-columns="PlaylistId;TrackId"
+              sort-columns="PlaylistId" query-rows="25" quick-filter="yes" row-height="medium"
+              select-all-checkbox="true" pageable="yes" auto-adjust="true" virtual-scroll="yes" insert-button="yes"
+              delete-button="yes" fixed-header="true" class="vertical-padding-8" edition-mode="dblclick"
+              horizontal-scroll="yes" class="fill-form">
+
+              <o-table-column attr="PlaylistId" title="Playlist">
+                <o-table-cell-renderer-service attr="PlaylistId" service="Playlist" entity="PlaylistType"
+                  columns="PlaylistId;Name" parent-keys="PlaylistId:TrackId" value-column="Name" keys="PlaylistId"
+                  visible-columns="Name" separator=" - " width="680px">
+                </o-table-cell-renderer-service>
+              </o-table-column>
+
+
+              <o-table-column attr="TrackId" title="Track">
+                <o-table-cell-renderer-service attr="TrackId" service="Track" entity="TrackType" columns="TrackId;Name"
+                  parent-keys="TrackId:TrackId" value-column="Name" keys="TrackId" visible-columns="Name"
+                  separator=" - " width="680px">
+                </o-table-cell-renderer-service>
+              </o-table-column>
+
+              <o-table-paginator page-size-options="25;50;100"></o-table-paginator>
+            </o-table>
+          </div>
+        </mat-tab>
+
       </mat-tab-group>
-      
+
     </o-form>
   </o-form-container>
 </div>

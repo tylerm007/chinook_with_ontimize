@@ -12,7 +12,7 @@ import { GenreCardComponent } from './Genre-card/Genre-card.component';
 
 import { InvoiceCardComponent } from './Invoice-card/Invoice-card.component';
 
-import { InvoiceLineCardComponent } from './InvoiceLine-card/InvoiceLine-card.component';
+import { InvoiceItemCardComponent } from './InvoiceItem-card/InvoiceItem-card.component';
 
 import { MediaTypeCardComponent } from './MediaType-card/MediaType-card.component';
 
@@ -41,7 +41,7 @@ export const MENU_CONFIG: MenuRootItem[] = [
     
         ,{ id: 'Invoice', name: 'INVOICE', icon: 'description', route: '/main/Invoice' }
     
-        ,{ id: 'InvoiceLine', name: 'INVOICELINE', icon: 'description', route: '/main/InvoiceLine' }
+        ,{ id: 'InvoiceItem', name: 'INVOICEITEM', icon: 'description', route: '/main/InvoiceItem' }
     
         ,{ id: 'MediaType', name: 'MEDIATYPE', icon: 'description', route: '/main/MediaType' }
     
@@ -71,7 +71,7 @@ export const MENU_COMPONENTS = [
 
     ,InvoiceCardComponent
 
-    ,InvoiceLineCardComponent
+    ,InvoiceItemCardComponent
 
     ,MediaTypeCardComponent
 
